@@ -1,0 +1,1425 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f7f8fa">
+  <meta name="description" content="나누기·백분율 역산·분수 비교·자료해석·집합 추론과 오답 복습을 위한 GSAT 단순암기">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="GSAT 단순암기">
+  <style>
+:root{--bg:#f7f8fa;--paper:#fff;--ink:#171b24;--muted:#667080;--line:#dfe3e9;--line-strong:#aab2bd;--blue:#3f5af8;--good:#17875b;--bad:#c43843;--rounded:19px;--shadow:0 16px 55px rgba(30,41,64,.055)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{background:var(--bg);scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font-family:system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;min-height:100dvh;overscroll-behavior-y:contain}
+button,input,select{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #899dff;outline-offset:2px}
+button:disabled{opacity:.36;cursor:not-allowed}
+.app-shell{max-width:940px;margin:0 auto;padding:calc(18px + env(safe-area-inset-top)) clamp(14px,4vw,38px) calc(42px + env(safe-area-inset-bottom));min-height:100dvh}
+.boot{letter-spacing:.22em;font-weight:800;color:#87909e;text-align:center;padding:36vh 0;font-size:12px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:31px}
+.logo{display:flex;align-items:center;gap:11px;cursor:pointer;user-select:none}
+.logo-mark{width:36px;height:36px;border:2px solid var(--ink);border-radius:11px;display:grid;place-items:center;font-size:15px;font-weight:950;letter-spacing:-1px;background:#fff;box-shadow:3px 3px 0 #d5d9ff}
+.logo-words{display:flex;flex-direction:column;line-height:1.1}
+.logo-words strong{font-size:14px;letter-spacing:.12em}
+.logo-words small{font-size:9px;color:#737b89;letter-spacing:.15em;margin-top:4px;font-weight:750}
+.top-actions{display:flex;gap:7px;align-items:center}
+.icon-btn{width:38px;height:38px;border-radius:11px;border:1px solid var(--line);background:white;color:#404856;display:grid;place-items:center;font-size:19px}
+.icon-btn:active{transform:scale(.96)}
+.tiny-pill{font-size:11px;color:#60697a;border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 10px;font-weight:700}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:.17em;color:#687286;text-transform:uppercase}
+.hero h1{font-size:clamp(33px,7vw,56px);letter-spacing:-.066em;line-height:1.13;margin:11px 0 14px;font-weight:850}
+.hero p{font-size:14px;line-height:1.85;color:var(--muted);max-width:590px;margin:0 0 30px}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:32px}
+.stat{border:1px solid var(--line);border-radius:14px;padding:16px 15px;background:var(--paper)}
+.stat b{display:block;font-size:clamp(24px,4.2vw,30px);letter-spacing:-.06em;line-height:1.2;font-variant-numeric:tabular-nums}
+.stat span{display:block;margin-top:6px;font-size:11px;color:#697384;font-weight:700}
+.section-header{display:flex;justify-content:space-between;align-items:center;margin:12px 0 13px}
+.section-header h2{font-size:17px;letter-spacing:-.03em;margin:0}
+.section-header span{font-size:11px;color:#8a93a0;font-weight:700}
+.mode-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.mode-card{position:relative;text-align:left;border:1px solid var(--line);border-radius:19px;background:white;padding:21px;min-height:198px;display:flex;flex-direction:column;align-items:flex-start;box-shadow:var(--shadow);transition:transform .13s,border-color .13s,box-shadow .13s;overflow:hidden}
+.mode-card:active{transform:scale(.986)}.mode-card:hover{border-color:#b0bbcf;box-shadow:0 10px 35px rgba(45,56,78,.09)}
+.mode-index{display:flex;align-items:center;justify-content:center;width:32px;height:32px;background:#eff1f5;color:#606878;border-radius:10px;font-weight:800;font-size:12px;margin-bottom:20px}
+.mode-title{font-size:20px;font-weight:800;letter-spacing:-.04em}
+.mode-sub{font-size:12px;color:#6c7584;line-height:1.7;max-width:330px;margin-top:7px}
+.mode-art{position:absolute;right:15px;top:20px;color:#eaedf2;font-weight:900;letter-spacing:-.06em;font-size:39px;line-height:1;pointer-events:none}
+.mode-foot{display:flex;justify-content:space-between;align-items:center;width:100%;margin-top:auto;padding-top:17px;font-size:10px;font-weight:800;color:#6d7580}
+.play-arrow{width:27px;height:27px;border:1px solid #e7e9ee;display:grid;place-items:center;border-radius:8px;color:#212632;font-size:15px}
+.footnote{font-size:11px;color:#9ba3ae;line-height:1.65;text-align:center;margin:29px auto 0}
+.game-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:17px;gap:10px}
+.back-btn{display:flex;align-items:center;gap:6px;border:0;padding:8px 0;background:transparent;font-weight:800;color:#667080;font-size:12px}
+.game-caption{color:#7f8998;font-size:11px;white-space:nowrap;font-weight:700}
+.game-banner{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin:0 0 19px}
+.game-banner h1{font-size:clamp(23px,5vw,32px);letter-spacing:-.05em;margin:6px 0 0;line-height:1.25}
+.combo-chip{border:1px solid #d7dce5;border-radius:12px;background:#fff;padding:9px 13px;text-align:right;min-width:88px}
+.combo-chip strong{font-size:19px;font-variant-numeric:tabular-nums;letter-spacing:-.04em}
+.combo-chip small{display:block;font-size:9px;letter-spacing:.1em;color:#8a93a1;font-weight:800}
+.combo-chip.active{background:#181e32;color:#fff;border-color:#181e32}
+.combo-chip.active small{color:#b2bde0}
+.progress-track{height:5px;background:#e4e7ee;overflow:hidden;border-radius:100px;margin-bottom:12px}
+.progress-fill{height:100%;background:#262c38;border-radius:100px;transition:width .3s ease}
+.game-metrics{display:flex;justify-content:space-between;gap:15px;font-size:12px;color:#7b8492;margin-bottom:22px;font-variant-numeric:tabular-nums}
+.game-metrics b{color:#394152}
+.question-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:clamp(19px,5vw,38px);box-shadow:var(--shadow);min-height:280px}
+.question-label{font-size:11px;letter-spacing:.13em;font-weight:800;color:#808b9a;text-transform:uppercase}
+.big-question{font-size:clamp(79px,23vw,132px);font-weight:850;line-height:1.15;text-align:center;letter-spacing:-.075em;padding:18px 0 12px;color:#161b28}
+.fraction-question{display:flex;flex-direction:column;align-items:center;padding:15px 0 24px;min-height:162px}
+.fraction-numer,.fraction-denom{font-size:clamp(62px,16vw,90px);font-weight:850;letter-spacing:-.075em;line-height:1.0;font-variant-numeric:tabular-nums}
+.fraction-line{width:113px;height:5px;background:#111823;margin:9px 0 10px;border-radius:3px}
+.question-instruction{text-align:center;color:#7a8391;font-size:12px;margin-bottom:18px}
+.answer-form{display:flex;align-items:stretch;gap:9px;max-width:460px;margin:5px auto 0}
+.answer-input{min-width:0;flex:1;border:2px solid #e1e5ec;border-radius:13px;background:#f9fafc;padding:15px 14px;font-size:25px;font-weight:800;color:#222a36;text-align:center;font-variant-numeric:tabular-nums}
+.answer-input::placeholder{font-size:15px;color:#a0a8b4;letter-spacing:0}
+.primary-btn{padding:13px 18px;background:#222935;color:#fff;border:1px solid #222935;border-radius:13px;font-size:14px;font-weight:800;white-space:nowrap}
+.primary-btn:active{transform:scale(.98)}
+.answer-suffix{font-weight:800;font-size:20px;align-self:center;color:#697384}
+.choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:500px;margin:0 auto}
+.choice{border:1.5px solid #dce1e9;background:#fff;color:#29313f;padding:21px 12px;border-radius:14px;font-weight:800;font-variant-numeric:tabular-nums;font-size:23px;letter-spacing:-.035em;transition:transform .11s,background .11s,border-color .11s}
+.choice:active{transform:scale(.975)}.choice:hover{border-color:#8c9bb6;background:#fafbfe}
+.choice.correct{border-color:#17a46c;color:#13764c;background:#eafaf3}.choice.wrong{border-color:#db6570;color:#b33440;background:#fff2f3}
+.feedback{margin-top:16px;min-height:22px;font-size:13px;font-weight:750;text-align:center;color:#667080;line-height:1.6}
+.feedback.ok{color:var(--good)}.feedback.no{color:var(--bad)}
+.shortcut-note{text-align:center;color:#98a0ad;margin-top:13px;font-size:11px;line-height:1.5}
+.shake{animation:shake .28s ease}@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}50%{transform:translateX(5px)}75%{transform:translateX(-2px)}}
+.table-instruction{background:white;border:1px solid #d6d9df;border-radius:13px;padding:13px 15px;margin-bottom:11px;font-size:12px;line-height:1.65;color:#3c4655}
+.table-instruction strong{color:#171c25}
+.table-question-title{font-size:13px;font-weight:800;margin-bottom:10px;letter-spacing:-.01em}
+.drop-zone-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:13px}
+.compare-panel{border:1px solid #d5dbe4;background:#fff;border-radius:14px;padding:13px;min-width:0}
+.compare-panel-header{display:flex;align-items:center;gap:8px;margin-bottom:9px;min-width:0}
+.compare-label{background:#222935;color:white;border-radius:7px;display:grid;place-items:center;width:28px;height:28px;font-size:15px;font-weight:800;flex:0 0 28px}
+.compare-description{font-size:11px;line-height:1.4;font-weight:750;letter-spacing:-.02em}
+.slotstack{display:flex;flex-direction:column;gap:6px}
+.drop-slot{border:1.5px dashed #bfc7d2;background:#fafbfc;border-radius:9px;min-height:49px;padding:8px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:3px;color:#697484;transition:background .11s,border-color .11s}
+.drop-slot .slot-role{font-size:10px;font-weight:700;line-height:1.3}
+.drop-slot .slot-val{font-size:14px;min-height:16px;font-weight:850;line-height:1.2;color:#222e3c;font-variant-numeric:tabular-nums}
+.drop-slot.filled{border-style:solid;background:#f0f8f4;border-color:#9bcfb8}.drop-slot.filled .slot-val{color:#156b4d}
+.drop-slot.drop-active{border-color:#4f69f7;background:#ebeeff;box-shadow:0 0 0 3px #4c68fb1b}
+.drop-slot.drop-error{border-color:#d04f58;background:#fff0f1}
+.math-op{font-size:11px;text-align:center;font-weight:750;color:#7a8592;padding:1px}
+.table-help{display:flex;align-items:center;justify-content:space-between;gap:9px;color:#6a7483;font-size:11px;margin:8px 0 9px;line-height:1.5}
+.table-help .tag{border:1px solid #d9dfe8;border-radius:5px;padding:3px 6px;background:#fff;white-space:nowrap}
+.table-viewport{height:clamp(234px,39dvh,375px);overflow:auto;position:relative;border:1.5px solid #1b1d22;background:#fff;border-radius:0;overscroll-behavior:contain;scrollbar-width:thin}
+.gsat-table{border-collapse:separate;border-spacing:0;table-layout:fixed;width:710px;min-width:710px;background:#fff;color:#161616;font-family:"Malgun Gothic","Apple SD Gothic Neo",Arial,sans-serif;font-variant-numeric:tabular-nums;font-size:12px}
+.gsat-table th,.gsat-table td{border-right:1px solid #222;border-bottom:1px solid #222;padding:10px 5px;text-align:center;background:#fff;white-space:nowrap;height:39px}
+.gsat-table th{font-size:11px;font-weight:800;background:#fff;position:sticky;top:0;z-index:5}
+.gsat-table tr:last-child td{border-bottom:0}.gsat-table th:last-child,.gsat-table td:last-child{border-right:0}
+.gsat-table .company{position:sticky;left:0;width:112px;min-width:112px;z-index:3;font-weight:650;background:#fff}
+.gsat-table .year{position:sticky;left:112px;width:54px;min-width:54px;z-index:3;background:#fff}
+.gsat-table th.company,.gsat-table th.year{z-index:8}
+.gsat-table td.numeric{cursor:grab;user-select:none;-webkit-user-select:none;touch-action:none}
+.gsat-table td.numeric:active{cursor:grabbing}
+.gsat-table td.cell-picked{background:#e9edff !important;box-shadow:inset 0 0 0 2px #6f83f9}
+.gsat-table td.muted-group{border-top:1.5px solid #111}
+.table-legend{color:#858b96;font-size:10px;padding:7px 0 0}
+.table-compare{display:flex;gap:8px;justify-content:center;margin:13px 0 0}
+.table-compare button{flex:1;max-width:180px;padding:14px 5px;border:1.5px solid #ced4de;background:#fff;border-radius:10px;font-size:17px;font-weight:850;font-variant-numeric:tabular-nums}
+.table-compare button:not(:disabled):active{transform:scale(.98)}
+.table-feedback{font-size:12px;min-height:37px;margin:10px 0 0;text-align:center;line-height:1.6;font-weight:700;color:#5b6571}
+.table-feedback.ok{color:var(--good)}.table-feedback.no{color:var(--bad)}
+.drag-ghost{position:fixed;z-index:10001;pointer-events:none;transform:translate(-50%,-50%) rotate(-3deg) scale(1.12);border:1px solid #111c31;border-radius:9px;padding:13px 18px;font-size:18px;font-weight:850;box-shadow:0 15px 28px #10204d42,0 0 0 4px #e4eaff;background:#fff;color:#131a28;white-space:nowrap;will-change:left,top;user-select:none}
+.table-spark{box-shadow:0 0 0 4px #e7edff}
+.session-finish{border:1px solid var(--line);background:white;border-radius:22px;text-align:center;padding:43px 23px 33px;box-shadow:var(--shadow)}
+.finish-kicker{letter-spacing:.16em;color:#7a8595;font-size:11px;font-weight:850}
+.finish-percent{font-size:clamp(76px,17vw,126px);line-height:1.2;letter-spacing:-.095em;font-weight:850;font-variant-numeric:tabular-nums;margin:15px 0}
+.finish-title{font-size:22px;font-weight:800;letter-spacing:-.035em;margin:0 0 23px}
+.finish-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:570px;margin:0 auto 28px}
+.finish-stat{background:#f7f8fa;border-radius:12px;padding:13px 3px}
+.finish-stat b{font-size:23px;font-variant-numeric:tabular-nums}.finish-stat span{font-size:10px;color:#737d8e;display:block;margin-top:5px}
+.finish-actions{display:flex;justify-content:center;gap:9px;flex-wrap:wrap}
+.secondary-btn{padding:13px 18px;background:white;border:1px solid #cbd2dc;color:#293441;border-radius:13px;font-size:14px;font-weight:800}
+.overlay{position:fixed;inset:0;background:rgba(21,26,36,.42);z-index:2000;display:grid;place-items:center;padding:15px;backdrop-filter:blur(3px)}
+.modal{background:#fff;border-radius:20px;padding:24px;max-width:440px;width:100%;box-shadow:0 22px 66px rgba(10,18,35,.16)}
+.modal h2{font-size:22px;margin:0 0 9px;letter-spacing:-.045em}.modal p{color:#6f7989;font-size:13px;line-height:1.75;margin:0 0 16px}
+.setting-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 0;border-bottom:1px solid #eef0f4;font-size:13px;font-weight:700}
+.setting-row select{border:1px solid #ccd2dc;background:white;color:#242d3c;border-radius:9px;padding:8px;max-width:178px;font-weight:750}
+.setting-row input[type=checkbox]{accent-color:#28354b;width:18px;height:18px}
+.modal-footer{display:flex;justify-content:flex-end;margin-top:19px}
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:10000}
+.celebration{position:fixed;left:50%;top:23%;transform:translate(-50%,-50%);z-index:10002;pointer-events:none;white-space:nowrap;font-weight:950;font-size:clamp(35px,9vw,73px);color:#182230;letter-spacing:-.07em;opacity:0;text-align:center;text-shadow:0 2px 0 #fff,0 8px 22px #ffffffba}
+.celebration.show{animation:popcelebrate .73s cubic-bezier(.18,.8,.35,1)}
+@keyframes popcelebrate{0%{opacity:0;transform:translate(-50%,-50%) scale(.4) rotate(-8deg)}17%{opacity:1;transform:translate(-50%,-50%) scale(1.22) rotate(3deg)}60%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-78%) scale(1.12)}}
+.toast{position:fixed;z-index:10100;left:50%;bottom:calc(28px + env(safe-area-inset-bottom));transform:translate(-50%,12px);background:#212a37;color:#fff;border-radius:12px;padding:11px 16px;font-weight:750;font-size:12px;opacity:0;transition:opacity .16s,transform .16s;pointer-events:none;white-space:nowrap;max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:580px){.app-shell{padding-left:14px;padding-right:14px}.hero h1{font-size:38px}.mode-grid{gap:9px}.mode-card{padding:17px;min-height:205px}.mode-title{font-size:17px}.mode-sub{font-size:11px}.mode-art{font-size:30px;right:12px}.mode-index{margin-bottom:19px}.stat{padding:13px 9px}.stat b{font-size:24px}.question-card{padding:20px 15px}.answer-form{gap:5px}.answer-input{font-size:23px;padding:12px 8px}.primary-btn{padding:12px}.compare-panel{padding:9px}.compare-description{font-size:10px}.compare-panel-header{align-items:flex-start}.drop-slot .slot-role{font-size:9px}.drop-slot .slot-val{font-size:13px}.drop-slot{padding:7px;min-height:51px}.table-viewport{height:34dvh;min-height:225px}.table-help{font-size:10px}.table-compare button{font-size:15px}}
+@media(max-width:365px){.mode-art{display:none}.mode-card{min-height:190px}.mode-title{font-size:16px}.compare-description{font-size:9.5px}.drop-zone-grid{gap:6px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.001ms!important;transition-duration:.001ms!important}}
+
+/* v1.1: printable exam-sheet composition, based on the proportions of a PSAT handout.
+   No copied exam text or tables are bundled. */
+.exam-paper{max-width:830px;margin:0 auto;background:#fff;border:1px solid #cdd2da;border-radius:0;padding:clamp(20px,5.1vw,51px) clamp(19px,5.8vw,61px) clamp(35px,5.5vw,62px);box-shadow:0 9px 28px rgba(17,24,39,.025)}
+.exam-paper-meta{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #dadada;padding-bottom:8px;margin-bottom:23px;font-size:10px;font-weight:700;color:#777;letter-spacing:.025em}
+.exam-question{font-size:clamp(14px,2.5vw,16px);line-height:1.8;letter-spacing:-.025em;margin:0 0 12px;color:#151515}
+.exam-question strong{font-weight:850}
+.exam-bracket{white-space:nowrap;font-weight:750}
+.exam-formula{font-size:12px;line-height:1.6;color:#51555d;margin:0 0 23px;border-left:2px solid #c9ced6;padding-left:11px}
+.exam-paper .drop-zone-grid{gap:14px;margin-bottom:21px}
+.exam-paper .compare-panel{border-color:#cbd0d8;border-radius:6px;box-shadow:none;padding:13px}
+.exam-paper .compare-label{background:#252525;border-radius:3px}
+.exam-paper .compare-description{font-size:12px;line-height:1.55}
+.exam-paper .drop-slot{border-radius:4px;background:#fff;border-color:#b7bdc6}
+.exam-paper .drop-slot.filled{background:#f1f6f2;border-color:#a8c5b4}
+.exam-paper .drop-slot.drop-active{background:#eef1ff;border-color:#445bde}
+.exam-paper .table-help{margin:8px 0 27px;color:#777}
+.exam-paper .table-help .tag{border-color:#e0e0e0;border-radius:3px;color:#555}
+.exam-table-wrap{width:100%;max-width:690px;margin:0 auto;padding:0}
+.exam-table-title{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;color:#111;text-align:center;font-size:clamp(13px,2.3vw,16px);line-height:1.6;font-weight:750;letter-spacing:-.035em;margin-bottom:1px}
+.exam-table-unit{text-align:right;font-size:11px;color:#272727;margin-bottom:7px}
+.exam-paper .table-viewport{height:auto;min-height:0;max-height:none;overflow-x:auto;overflow-y:hidden;border:0;border-radius:0;scrollbar-width:thin;overscroll-behavior-x:contain}
+.exam-paper .gsat-table{border-collapse:collapse;table-layout:fixed;min-width:0;width:100%;font-size:12px;border:1px solid #252525}
+.exam-paper .gsat-table th,.exam-paper .gsat-table td{border:1px solid #545454;padding:7px 6px;height:33px;font-weight:450;position:static;white-space:nowrap;background:#fff;text-align:center}
+.exam-paper .gsat-table th{font-weight:750;background:#f6f6f6}
+.exam-paper .gsat-table .label-cell{background:#fafafa;font-weight:650}
+.exam-paper .gsat-table th small{display:block;font-size:9px;color:#333;font-weight:500}
+.exam-paper .gsat-table .group-start>*{border-top:2px solid #333}
+.exam-paper .gsat-table .total-row>*{background:#f5f5f5;font-weight:750}
+.exam-paper .gsat-table tr:last-child>*{border-bottom:1px solid #545454}
+.exam-paper .gsat-table tr>*:last-child{border-right:1px solid #545454}
+.exam-paper .gsat-table td.numeric{touch-action:none}
+.exam-paper .gsat-table td.numeric.cell-picked{background:#e9edff;box-shadow:inset 0 0 0 2px #7485ec}
+.exam-paper .gsat-table.finance-table{min-width:605px}
+.exam-paper .gsat-table.finance-table th:first-child{width:21%}
+.exam-paper .gsat-table.finance-table th:nth-child(2){width:12%}
+.exam-paper .gsat-table.industry-table{min-width:620px}
+.exam-paper .gsat-table.industry-table th:first-child{width:12%}
+.exam-paper .gsat-table.industry-table th:nth-child(2){width:18%}
+.exam-paper .gsat-table.monthly-table{min-width:320px;max-width:480px;margin:0 auto}
+.exam-paper .table-legend{font-size:10px;color:#767b84;line-height:1.6;padding:11px 0 0}
+.exam-paper+.table-compare{max-width:830px;margin:17px auto 0}
+.exam-paper~.table-feedback{max-width:830px;margin:9px auto 0}
+@media(max-width:600px){
+ .exam-paper{padding:23px 17px 33px}
+ .exam-paper-meta{font-size:9px;margin-bottom:20px}
+ .exam-paper .drop-zone-grid{gap:7px;position:sticky;top:7px;z-index:10;background:rgba(255,255,255,.96);padding:6px 0;margin-left:-5px;margin-right:-5px}
+ .exam-paper .compare-panel{padding:8px}
+ .exam-paper .compare-description{font-size:10px}
+ .exam-paper .drop-slot{padding:7px 5px}
+ .exam-paper .table-help{font-size:10px;gap:4px}
+ .exam-paper .table-help .tag{font-size:9px}
+ .exam-paper .gsat-table{font-size:11px}
+ .exam-paper .gsat-table th,.exam-paper .gsat-table td{padding:7px 3px;height:34px}
+ .exam-paper .table-legend{padding:9px 0 0}
+ .exam-paper .gsat-table.monthly-table{width:100%;min-width:290px}
+}
+
+/* v1.2: study tables, statement-first ratio slots, and mobile table fit. */
+.mode-card{display:flex;flex-direction:column;align-items:stretch;cursor:default}
+.mode-card .mode-title,.mode-card .mode-sub,.mode-card .mode-foot{display:block}
+.mode-card .mode-foot{margin-top:auto;margin-bottom:10px}
+.mode-actions{display:flex;gap:7px;flex-wrap:wrap;position:relative;z-index:1}
+.mode-actions button{flex:1;min-width:0;padding:10px 8px;font-size:12px;white-space:nowrap;border-radius:9px}
+.mode-actions .mode-study{background:white}
+.mode-actions .mode-play{padding:10px 7px}
+.study-header{margin:12px 0 17px}
+.study-header h1{font-size:clamp(26px,5vw,38px);letter-spacing:-.055em;margin:7px 0 5px}
+.study-header p{font-size:13px;color:#697483;line-height:1.65;margin:0}
+.study-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.study-toggle{background:#fff;border:1px solid #ccd2dc;border-radius:9px;padding:11px 12px;color:#475164;font-size:12px;font-weight:750}
+.study-toggle.selected{background:#e9edff;border-color:#677cff;color:#263a9e}
+.study-play{margin-left:auto;font-size:12px;padding:11px 13px}
+.study-grid{display:grid;gap:9px}
+.study-grid.alphabet-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+.study-grid.fraction-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+.study-item{border:1px solid #cfd5de;border-radius:11px;background:#fff;min-height:91px;display:flex;flex-direction:column;gap:7px;align-items:center;justify-content:center;padding:10px 5px}
+.study-front{font-size:clamp(17px,3vw,22px);font-weight:850;color:#111e33}
+.study-back{font-size:clamp(13px,2.3vw,17px);font-weight:750;color:#54627c;font-variant-numeric:tabular-nums}
+.study-item.masked .study-back{visibility:hidden}
+.study-item.masked.revealed .study-back{visibility:visible;color:#2855ce}
+.study-item.masked{border-style:dashed;border-color:#aeb8ca}
+.study-item.masked.revealed{border-style:solid;background:#f0f4ff}
+.study-footnote{color:#798391;font-size:11px;line-height:1.7;margin:16px 0 26px}
+.exam-paper .exam-question{font-size:14px;margin-bottom:22px}
+.exam-options{display:flex;flex-direction:column;gap:16px;margin:0 0 38px}
+.exam-option{display:flex;flex-direction:column;gap:7px;min-width:0;padding-bottom:14px;border-bottom:1px solid #ececef}
+.exam-option-text{display:flex;gap:9px;align-items:baseline;color:#151515;font-size:clamp(13px,2vw,15px);font-weight:600;line-height:1.7}
+.exam-option-number{font-family:Arial,sans-serif;font-size:20px;font-weight:600;flex:0 0 25px}
+.exam-option-ratio{display:flex;gap:10px;align-items:center;margin:0 0 0 34px}
+.exam-option-ratio .drop-slot{height:42px;min-height:42px;max-width:140px;flex:1;align-items:center;border:1px dashed #9ba5b7;border-radius:3px;background:#fff;padding:5px 8px}
+.exam-option-ratio .slot-val{font-size:14px;line-height:1.25;text-align:center;min-height:17px}
+.exam-option-ratio .drop-slot.filled{border:1px solid #78a78e;background:#f0faf4}
+.exam-option-ratio .drop-slot:not(.filled)::after{content:' ';height:1px;width:80%;background:#d6dae2}
+.fraction-slash{font-size:22px;font-weight:500;color:#151515;padding:0 2px}
+.exam-paper .table-viewport{overflow-x:hidden;max-width:100%}
+.exam-paper .gsat-table.finance-table,.exam-paper .gsat-table.industry-table,.exam-paper .gsat-table.monthly-table,.exam-paper .gsat-table.kindergarten-table{min-width:0;max-width:none;width:100%}
+.exam-paper .gsat-table th,.exam-paper .gsat-table td{white-space:normal;overflow-wrap:anywhere}
+.exam-paper .gsat-table td.numeric{white-space:nowrap;font-variant-numeric:tabular-nums}
+.exam-paper .gsat-table.finance-table th:first-child{width:19%}
+.exam-paper .gsat-table.finance-table th:nth-child(2){width:12%}
+.exam-paper .gsat-table.industry-table th:first-child{width:12%}
+.exam-paper .gsat-table.industry-table th:nth-child(2){width:18%}
+.exam-paper .gsat-table.kindergarten-table th:first-child{width:19%}
+.table-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:9px}
+.table-zoom-btn{border:1px solid #d2d5de;background:#fff;color:#485266;font-size:11px;font-weight:700;padding:7px 10px;border-radius:6px;white-space:nowrap}
+.table-zoom-btn:hover{border-color:#71809c}
+.exam-paper .table-viewport.table-enlarged{overflow-x:auto}
+.exam-paper .table-viewport.table-enlarged .finance-table{min-width:640px}
+.exam-paper .table-viewport.table-enlarged .industry-table{min-width:650px}
+.exam-paper .table-viewport.table-enlarged .kindergarten-table{min-width:470px}
+.exam-paper .table-viewport.table-enlarged .monthly-table{min-width:390px}
+.table-feedback:empty{min-height:0;margin:0}
+@media(max-width:700px){
+ .study-grid.alphabet-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .study-grid.fraction-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .exam-paper .gsat-table th,.exam-paper .gsat-table td{padding:6px 2px}
+}
+@media(max-width:600px){
+ .exam-paper{padding:23px 12px 30px}
+ .exam-paper .exam-question{margin-bottom:18px}
+ .exam-options{gap:13px;margin-bottom:29px}
+ .exam-option{gap:5px;padding-bottom:11px}
+ .exam-option-text{font-size:12.5px;line-height:1.6}
+ .exam-option-ratio{gap:8px;margin-left:32px}
+ .exam-option-ratio .drop-slot{max-width:128px;height:37px;min-height:37px}
+ .exam-paper .gsat-table{font-size:clamp(9px,2.45vw,11px)}
+ .exam-paper .gsat-table th,.exam-paper .gsat-table td{font-size:inherit;padding:5px 1px;line-height:1.4;height:31px}
+ .exam-paper .gsat-table th{word-break:keep-all}
+ .exam-paper .gsat-table.finance-table th:first-child{width:20%}
+ .exam-paper .gsat-table.finance-table th:nth-child(2){width:12%}
+ .exam-paper .gsat-table.industry-table th:first-child{width:12%}
+ .exam-paper .gsat-table.industry-table th:nth-child(2){width:18%}
+ .exam-paper .gsat-table th small{font-size:8px}
+ .exam-paper .gsat-table td.numeric{letter-spacing:-.035em}
+ .exam-paper .table-legend{font-size:9px}
+ .mode-card{padding:15px;min-height:232px}
+ .mode-actions button{font-size:11px;padding:8px 4px}
+ .study-item{min-height:84px}
+}
+@media(max-width:365px){
+ .study-grid.fraction-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .exam-paper .gsat-table{font-size:9px}
+ .exam-paper .gsat-table th,.exam-paper .gsat-table td{padding:5px 0}
+ .exam-paper{padding-left:8px;padding-right:8px}
+}
+
+/* v1.3: syllogisms and the simplified GSAT 단순암기 brand. */
+.logo-words strong{font-size:14px;letter-spacing:-.035em}
+.logo-words small{letter-spacing:.1em}
+.reason-paper{background:#fff;border:1px solid #dce0e7;border-radius:17px;box-shadow:var(--shadow);padding:clamp(21px,4vw,38px) clamp(17px,4vw,37px) 25px;margin:0 auto;max-width:840px}
+.reason-meta{display:flex;justify-content:space-between;gap:10px;color:#7a8392;font-size:11px;letter-spacing:.05em;font-weight:750;margin-bottom:13px}
+.reason-intro{font-size:clamp(15px,2.6vw,18px);font-weight:750;color:#171d2a;line-height:1.7;letter-spacing:-.025em;margin:0 0 23px}
+.reason-premises{display:flex;flex-direction:column;gap:0;background:#fafbfc;border:1px solid #e1e5ec;border-radius:10px;margin-bottom:29px;overflow:hidden}
+.reason-premise{display:flex;gap:18px;align-items:baseline;padding:16px 20px;border-bottom:1px solid #e4e7ed;line-height:1.65;letter-spacing:-.02em;font-weight:720;font-size:clamp(15px,2.3vw,18px)}
+.reason-premise:last-child{border-bottom:0}
+.reason-p-label{font-size:11px;font-weight:740;color:#687385;min-width:72px;flex:0 0 auto}
+.reason-connector{font-size:15px;color:#747d8d;padding:6px 20px;border-bottom:1px solid #e4e7ed;letter-spacing:.1em;text-align:center}
+.reason-goal{background:#f0f3f8}
+.reason-choices{display:grid;grid-template-columns:1fr;gap:10px}
+.reason-choice{min-height:63px;width:100%;display:flex;gap:18px;text-align:left;align-items:center;background:#fff;border:1px solid #cdd4df;padding:14px 18px;border-radius:11px;color:#202836;font-size:clamp(15px,2.3vw,17px);font-weight:650;letter-spacing:-.02em;line-height:1.5;transition:transform .1s,border-color .1s,background .1s}
+.reason-choice:active{transform:scale(.988)}
+.reason-choice:hover{border-color:#8899ba;background:#fcfdff}
+.reason-choice-number{font-size:23px;color:#606b7c;line-height:1;flex:0 0 auto}
+.reason-choice.correct,.reason-choice.reason-answer-reveal{background:#f0faf5;border-color:#43a87b;color:#11653e}
+.reason-choice.wrong{background:#fff0f0;border-color:#e07780;color:#b42b37}
+.reason-feedback{margin-top:17px;text-align:left;line-height:1.8;min-height:28px}
+.reason-hint{border-top:1px dashed #e6e8ec;padding-top:12px;color:#7c8595;font-size:11px;line-height:1.7;margin:17px 0 0}
+@media(max-width:480px){
+ .reason-paper{padding:20px 15px 20px}
+ .reason-intro{font-size:15px;margin-bottom:17px}
+ .reason-premise{padding:15px 12px;gap:8px;font-size:15px}
+ .reason-p-label{min-width:57px;font-size:10px}
+ .reason-choice{min-height:61px;padding:12px 11px;font-size:15px;gap:11px}
+ .reason-choice-number{font-size:21px}
+}
+
+/* v1.4: diagram memorization and multiple-choice Venn training */
+.mode-actions.logic-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;gap:7px}
+.mode-actions.logic-actions .mode-study{grid-column:span 2}
+.mode-actions.logic-actions button{white-space:normal;line-height:1.25;min-height:39px}
+.diagram-legend{display:flex;align-items:center;flex-wrap:wrap;gap:8px 24px;padding:12px 15px;border:1px solid #e0e4eb;border-radius:11px;background:#fff;font-size:12px;font-weight:670;color:#414c60}
+.diagram-legend>span{display:inline-flex;align-items:center;gap:7px}
+.legend-square{display:inline-block;width:19px;height:17px;border:1px solid #8190a7;background:#abb5c5}
+.legend-x{font-size:23px;line-height:1;font-weight:850;color:#161d29}
+.diagram-study-callout{margin-top:10px;color:#586378;font-size:12px;line-height:1.7}
+.diagram-study-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.diagram-study-card{background:#fff;text-align:left;border:1px solid #d7dde6;border-radius:15px;padding:18px;display:flex;flex-direction:column;gap:8px;min-width:0;min-height:276px;align-items:stretch}
+.diagram-study-card:hover{border-color:#9baac3}
+.diagram-study-statement{font-size:16px;font-weight:800;line-height:1.5;color:#182235;word-break:keep-all}
+.diagram-study-illustration{position:relative;display:block;margin:0 auto;width:100%;max-width:280px}
+.diagram-svg{display:block;width:100%;height:auto;pointer-events:none}
+.diagram-masked-label{display:none;position:absolute;inset:0;align-items:center;justify-content:center;color:#758093;font-size:12px;font-weight:750}
+.diagram-study-detail{display:flex;flex-direction:column;gap:5px;line-height:1.5;min-height:64px}
+.diagram-study-detail strong{font-size:17px;color:#26344a;font-weight:800}
+.diagram-study-detail small{font-size:12px;color:#6d7685;line-height:1.65}
+.diagram-study-card.masked:not(.revealed){border-style:dashed}
+.diagram-study-card.masked:not(.revealed) .diagram-svg,.diagram-study-card.masked:not(.revealed) .diagram-study-detail{visibility:hidden}
+.diagram-study-card.masked:not(.revealed) .diagram-masked-label{display:flex}
+.diagram-study-card.masked.revealed{border-color:#7c99df;background:#f7f9ff}
+.diagram-question-instruction{font-size:15px;color:#323b4a;font-weight:720;line-height:1.6;margin:0 0 12px}
+.diagram-statement{font-size:clamp(21px,4vw,27px);font-weight:850;text-align:center;border:1px solid #dbe0e8;padding:20px 12px;border-radius:11px;line-height:1.5;color:#111d2e;background:#f9fafc}
+.quiz-legend{border:0;border-bottom:1px solid #e5e8ef;border-radius:0;background:transparent;justify-content:center;margin:13px 0 17px;padding:5px 0 12px;font-size:11px}
+.diagram-option-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.diagram-option{display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;padding:11px 12px 5px;gap:1px;border:1px solid #ccd4e0;border-radius:12px;background:#fff;color:#283244;min-width:0}
+.diagram-option:active{transform:scale(.985)}
+.diagram-option:hover{border-color:#8ca0c4}
+.diagram-option-number{text-align:left;font-size:22px;color:#5d6879;font-weight:700;line-height:1.2}
+.diagram-option .diagram-svg{max-height:185px}
+.diagram-option.correct,.diagram-option.diagram-answer-reveal{background:#f0faf5;border-color:#43a87b}
+.diagram-option.wrong{background:#fff0f0;border-color:#e07780}
+@media(max-width:600px){.diagram-study-grid{grid-template-columns:1fr 1fr;gap:8px}.diagram-study-card{min-height:215px;padding:11px}.diagram-study-statement{font-size:12px;min-height:40px}.diagram-study-detail strong{font-size:14px}.diagram-study-detail small{font-size:10px}.diagram-option-grid{gap:7px}.diagram-option{padding:6px 7px 2px}.diagram-option-number{font-size:18px}.diagram-statement{padding:13px 7px}.diagram-legend{gap:5px 16px;font-size:11px}}
+@media(max-width:375px){.diagram-study-grid{grid-template-columns:1fr}.diagram-study-card{min-height:220px;padding:14px}.diagram-study-statement{font-size:15px;min-height:0}.diagram-study-illustration{max-width:220px}.diagram-study-detail strong{font-size:16px}.diagram-study-detail small{font-size:11px}.diagram-option{padding:4px 3px}.diagram-legend{font-size:10px}}
+/* v1.5 — math modules and local-only error dashboard */
+.monitor-banner{display:flex;justify-content:space-between;align-items:center;text-align:left;gap:12px;width:100%;background:#fff;border:1px solid var(--line);border-radius:15px;padding:16px 19px;margin:-15px 0 30px;box-shadow:var(--shadow);color:var(--ink)}
+.monitor-banner span:first-child{display:flex;flex-direction:column;gap:5px}.monitor-banner strong{font-size:15px}.monitor-banner small{font-size:12px;color:var(--muted)}.monitor-count{font-size:12px;white-space:nowrap;font-weight:800;color:#344b92}
+.math-equation{font-size:clamp(34px,9vw,68px);font-weight:850;letter-spacing:-.055em;text-align:center;margin:44px auto 28px;line-height:1.35;font-variant-numeric:tabular-nums}.math-equation span{color:#607082}
+.reverse-percent-brief{text-align:center;display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:8px;font-size:clamp(16px,3vw,23px);padding:46px 0 27px}.reverse-percent-brief strong{font-size:clamp(28px,7vw,44px);letter-spacing:-.04em}
+.compare-fractions{display:flex;align-items:center;justify-content:center;gap:clamp(19px,5vw,62px);padding:25px 0 32px}.math-fraction{display:flex;flex-direction:column;align-items:center;min-width:65px;gap:6px;font-size:clamp(40px,10vw,72px);line-height:1.15;font-variant-numeric:tabular-nums}.math-fraction i{background:#1b2536;width:100%;height:4px;border-radius:4px}.comparison-placeholder{font-size:clamp(37px,7vw,50px);font-weight:850;color:#a7b0be}
+.compare-choices{display:grid;grid-template-columns:repeat(3,1fr);max-width:510px;margin:0 auto;gap:10px}.compare-choices .choice{padding:16px;font-size:32px}
+.monitor-header{margin-bottom:26px}.monitor-header h1{font-size:clamp(29px,5vw,43px);letter-spacing:-.05em;margin:10px 0}.monitor-header p{font-size:13px;color:var(--muted);line-height:1.8;margin:0}.monitor-stats{margin-bottom:15px}.monitor-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:27px}.monitor-help{font-size:11px;color:var(--muted)}
+.monitor-heading{font-size:17px;letter-spacing:-.03em;margin:24px 0 13px}
+.mode-stat-list{border:1px solid var(--line);border-radius:15px;background:#fff;overflow:hidden}.mode-stat-row{display:flex;align-items:center;gap:12px;padding:12px 15px;border-bottom:1px solid #ebedf0}.mode-stat-row:last-child{border-bottom:0}.mode-stat-name{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}.mode-stat-name strong{font-size:13px}.mode-stat-name small{font-size:10px;color:var(--muted);line-height:1.6}.stat-rate{display:flex;flex-direction:column;min-width:48px;text-align:right}.stat-rate strong{font-size:17px}.stat-rate small{font-size:10px;color:var(--muted)}.stat-review{font-size:11px;padding:9px 12px}
+.monitor-list-head{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-top:21px}.monitor-list-head h2{margin:8px 0}.monitor-list-head label{font-size:11px;color:#566171}.monitor-list-head select{border:1px solid #ccd3dd;border-radius:7px;background:#fff;padding:8px;max-width:170px;color:#293446}
+.wrong-list-item{display:flex;align-items:center;justify-content:space-between;gap:11px;border-bottom:1px solid #e5e8ed;padding:13px 5px}.wrong-list-item div{display:flex;flex-direction:column;gap:5px;min-width:0}.wrong-list-item small{font-size:10px;color:#808b99}.wrong-list-item strong{font-size:13px;line-height:1.5;overflow-wrap:anywhere}.wrong-badge{white-space:nowrap;font-size:10px;color:#9e3943;border-radius:100px;padding:5px 7px;background:#fff0f0;font-weight:750}.monitor-empty{border:1px dashed #cbd0da;border-radius:12px;padding:28px;text-align:center;color:#818b98;font-size:13px}.monitor-footer{margin:27px 0 20px;border-top:1px solid #e1e4e9;padding-top:14px}.monitor-footer p{font-size:11px;color:#929aa6;line-height:1.7}
+@media(max-width:560px){.monitor-banner{padding:13px;align-items:flex-start}.monitor-count{font-size:10px;max-width:92px;white-space:normal;text-align:right}.monitor-banner small{font-size:11px}.mode-stat-row{gap:7px;padding:12px 10px}.mode-stat-name strong{font-size:12px}.mode-stat-name small{font-size:10px}.stat-review{padding:8px 8px}.monitor-stats .stat{padding:13px 8px}.monitor-stats .stat b{font-size:23px}.wrong-badge{font-size:9px;padding:4px}.wrong-list-item strong{font-size:12px}}
+
+</style>
+  <title>GSAT 단순암기</title>
+</head>
+<body>
+  <div id="app" class="app-shell">
+    <div class="boot">GSAT 단순암기</div>
+  </div>
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <div id="celebration" class="celebration" aria-live="polite" aria-atomic="true"></div>
+  <div id="toast" class="toast" aria-live="polite"></div>
+  <script>
+/* GSAT 단순암기 — no external frameworks or server required.
+ * New training modes can be added via window.GSATLab.registerMode({...}).
+ * See README.md and the registerMode call at the end of this file.
+ */
+(() => {
+  'use strict';
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
+  const app = $('#app');
+  const fxCanvas = $('#fx');
+  const fxCtx = fxCanvas.getContext('2d');
+  const modeRegistry = new Map();
+  const STORAGE_KEY = 'gsat-speed-lab-v1';
+  const DEFAULT_SETTINGS = {questionCount:10, answerStyle:'choice', tablePreset:'mixed', tableOptions:2, reasoningStyle:'mixed', divisionLevel:'mixed', sound:true, haptics:true};
+  const defaultData = () => ({ settings:{...DEFAULT_SETTINGS}, records:[], totalRight:0, totalAnswered:0, bestCombo:0, wrongBank:{}, modeStats:{} });
+  let state = loadState();
+  let session = null;
+  let currentMode = null;
+  let question = null;
+  let pendingTimer = null;
+  let tableCleanup = () => {};
+  let audioContext = null;
+  let particles = [], animating = false, canvasW=0, canvasH=0, fxRatio=1;
+  let selectedCell = null;
+  let toastTimer = null;
+  let studyMode = null;
+  let monitoring = false;
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function loadState(){
+    try {
+      const raw = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      if(!raw || typeof raw !== 'object') return defaultData();
+      return {...defaultData(), ...raw,settings:{...DEFAULT_SETTINGS,...raw.settings},records:Array.isArray(raw.records)?raw.records:[],wrongBank:raw.wrongBank&&typeof raw.wrongBank==='object'?raw.wrongBank:{},modeStats:raw.modeStats&&typeof raw.modeStats==='object'?raw.modeStats:{}};
+    } catch {return defaultData();}
+  }
+  function saveState(){try {localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch{}}
+  function pick(arr){return arr[Math.floor(Math.random()*arr.length)];}
+  const random = (min,max)=>Math.floor(Math.random()*(max-min+1))+min;
+  function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=random(0,i);[a[i],a[j]]=[a[j],a[i]];}return a;}
+  const two = n => Number(n).toLocaleString('ko-KR',{maximumFractionDigits:2});
+  const fixed2 = n => Number(n.toFixed(2)).toLocaleString('ko-KR',{maximumFractionDigits:2});
+  const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const letter = n => String.fromCharCode(64+n);
+  const percentage = (num,denom) => num/denom*100;
+
+  function registerMode(m){
+    if(!m || !m.key || !m.title || !m.makeQuestion || !m.render || !m.mount || !m.checkAnswer) throw Error('Incomplete mode definition');
+    modeRegistry.set(m.key,m);
+    if(!session && !studyMode && !monitoring) renderHome();
+  }
+  window.GSATLab={registerMode, listModes:()=>[...modeRegistry.keys()],version:'1.5.0'};
+
+  function topbar(){
+    return `<header class="topbar">
+      <div class="logo" id="logo-home" role="button" tabindex="0" aria-label="홈으로">
+        <span class="logo-mark">G.</span><span class="logo-words"><strong>GSAT 단순암기</strong><small>QUICK PRACTICE</small></span>
+      </div>
+      <div class="top-actions"><button class="icon-btn" id="monitor-btn" aria-label="오답 모니터링" title="오답 모니터링">▤</button><button class="icon-btn" id="sound-btn" aria-label="소리 켜기 또는 끄기" title="소리">${state.settings.sound?'♫':'♪̸'}</button><button class="icon-btn" id="settings-btn" aria-label="설정" title="설정">⚙</button></div>
+    </header>`;
+  }
+  function bindTopbar(){
+    $('#logo-home')?.addEventListener('click',exitGame);
+    $('#logo-home')?.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();exitGame();}});
+    $('#settings-btn')?.addEventListener('click',showSettings);
+    $('#monitor-btn')?.addEventListener('click',renderMonitor);
+    $('#sound-btn')?.addEventListener('click',()=>{state.settings.sound=!state.settings.sound;saveState();const b=$('#sound-btn');if(b)b.textContent=state.settings.sound?'♫':'♪̸';toast(state.settings.sound?'효과음 켜짐':'효과음 꺼짐');});
+  }
+  function exitGame(){
+    clearTimeout(pendingTimer);tableCleanup();tableCleanup=()=>{};
+    session=null;currentMode=null;question=null;studyMode=null;monitoring=false;selectedCell=null;renderHome();
+  }
+  function renderHome(){
+    stopParticles();
+    monitoring=false;
+    const visibleModes=[...modeRegistry.values()].filter(m=>!m.hidden);
+    const total=state.totalAnswered;
+    const acc=total?Math.round(100*state.totalRight/total):0;
+    app.innerHTML=`${topbar()}
+      <main>
+        <section class="hero"><div class="eyebrow">GSAT / PRACTICE</div><h1>GSAT 단순암기</h1><p>암기·암산·자료 탐색·집합 추론을 짧게 반복합니다. 기록을 분석해 자주 틀린 문제를 다시 연습하세요.</p></section>
+        <section class="stats-grid" aria-label="누적 통계"><div class="stat"><b>${two(total)}</b><span>누적 풀이</span></div><div class="stat"><b>${acc}%</b><span>전체 정답률</span></div><div class="stat"><b>${two(state.bestCombo)}</b><span>최고 콤보</span></div></section>
+        <button type="button" id="open-monitor" class="monitor-banner"><span><strong>오답 모니터링</strong><small>유형별 정답률 · 다시 풀 문제 · 취약 문제 집중 연습</small></span><span class="monitor-count">${getWeakEntries().length}개 복습 대기 →</span></button>
+        <div class="section-header"><h2>트레이닝 선택</h2><span>${visibleModes.length.toString().padStart(2,'0')} MODES</span></div>
+        <div class="mode-grid">${visibleModes.map((m,i)=>`<article class="mode-card" aria-label="${escapeHtml(m.title)}">
+        <span class="mode-index">${String(i+1).padStart(2,'0')}</span><span class="mode-art" aria-hidden="true">${escapeHtml(m.art||'◇')}</span><span class="mode-title">${escapeHtml(m.title)}</span><span class="mode-sub">${escapeHtml(m.subtitle||'')}</span><span class="mode-foot"><span>${escapeHtml(m.tag||'SPEED DRILL')}</span></span>
+        <div class="mode-actions ${m.key==='reason'?'logic-actions':''}">${m.key==='reason'?`<button type="button" class="secondary-btn mode-study" data-study="reason">개념 암기</button><button type="button" class="secondary-btn mode-diagram" data-start="diagram">다이어그램 퀴즈</button><button type="button" class="primary-btn mode-play" data-start="reason">명제 추론 →</button>`:`${['alphabet','fraction'].includes(m.key)?`<button type="button" class="secondary-btn mode-study" data-study="${escapeHtml(m.key)}">암기하기</button>`:''}<button type="button" class="primary-btn mode-play" data-start="${escapeHtml(m.key)}">문제 풀기 →</button>`}</div>
+      </article>`).join('')}</div>
+        <p class="footnote">비공식 개인 학습용 게임 · 삼성 및 GSAT 운영기관과 무관 · 기록은 현재 브라우저에만 저장됩니다.</p>
+      </main>`;
+    bindTopbar();
+    $$('[data-start]').forEach(b=>b.addEventListener('click',()=>startGame(b.dataset.start)));
+    $('#open-monitor')?.addEventListener('click',renderMonitor);
+    $$('[data-study]').forEach(b=>b.addEventListener('click',()=>renderStudy(b.dataset.study)));
+  }
+  // Unscored reference / hide-and-reveal study sheets for the two memorization modes.
+  function renderStudy(key){
+    if(key==='reason'){renderDiagramStudy();return;}
+    if(!['alphabet','fraction'].includes(key))return;
+    tableCleanup();tableCleanup=()=>{};clearTimeout(pendingTimer);
+    session=null;currentMode=null;question=null;studyMode=key;
+    const isLetter=key==='alphabet';
+    const entries=isLetter?Array.from({length:26},(_,i)=>({front:letter(i+1),back:String(i+1)})):
+      Array.from({length:19},(_,i)=>({front:`1/${i+2}`,back:`${fixed2(100/(i+2))}%`}));
+    app.innerHTML=`${topbar()}
+      <div class="game-head"><button class="back-btn" id="study-back">← 훈련 선택</button><span class="game-caption">STUDY / NO TIMER</span></div>
+      <div class="study-header"><div class="eyebrow">MEMORIZE FIRST</div><h1>${isLetter?'알파벳 번호 암기':'분수 비율표 암기'}</h1><p>${isLetter?'A=1부터 Z=26까지 순서를 눈으로 익히세요.':'1/2부터 1/20까지 자주 사용하는 백분율을 익히세요.'}</p></div>
+      <div class="study-toolbar"><button class="study-toggle selected" id="reveal-all">전체 보기</button><button class="study-toggle" id="hide-all">가리고 외우기</button><button class="primary-btn study-play" id="study-play">문제 풀기 →</button></div>
+      <div class="study-grid ${isLetter?'alphabet-grid':'fraction-grid'}">${entries.map(({front,back})=>`<button class="study-item" type="button" data-front="${escapeHtml(front)}" data-back="${escapeHtml(back)}" aria-label="${escapeHtml(front)}: ${escapeHtml(back)}"><span class="study-front">${escapeHtml(front)}</span><span class="study-back">${escapeHtml(back)}</span></button>`).join('')}</div>
+      <div class="study-footnote">가리고 외우기에서는 각 칸을 누르면 정답이 나타납니다. 암기 화면에서는 점수와 시간이 기록되지 않습니다.</div>`;
+    bindTopbar();
+    $('#study-back').addEventListener('click',exitGame);
+    $('#study-play').addEventListener('click',()=>startGame(key));
+    const items=$$('.study-item');
+    const showAll=shown=>{
+      items.forEach(el=>{el.classList.toggle('masked',!shown);el.classList.remove('revealed');el.setAttribute('aria-pressed',String(shown));});
+      $('#reveal-all').classList.toggle('selected',shown);
+      $('#hide-all').classList.toggle('selected',!shown);
+    };
+    $('#reveal-all').addEventListener('click',()=>showAll(true));
+    $('#hide-all').addEventListener('click',()=>showAll(false));
+    items.forEach(el=>el.addEventListener('click',()=>{
+      if(el.classList.contains('masked')){el.classList.toggle('revealed');el.setAttribute('aria-pressed',String(el.classList.contains('revealed')));}
+    }));
+  }
+
+  function showSettings(){
+    if($('.overlay'))return;
+    const overlay=document.createElement('div');overlay.className='overlay';overlay.setAttribute('role','dialog');overlay.setAttribute('aria-modal','true');
+    overlay.innerHTML=`<div class="modal"><h2>게임 설정</h2><p>선택지를 이용하면 빠른 반복 학습에, 직접 입력하면 더 정확한 암기 확인에 적합합니다. 표 탐색에서는 선지에 필요한 분자·분모를 찾습니다. 집합 추론은 참인 결론 또는 결론을 완성할 중간 명제를 고릅니다.</p>
+    <label class="setting-row"><span>한 세트 문제 수</span><select id="question-count"><option value="10">10문제</option><option value="20">20문제</option><option value="30">30문제</option></select></label>
+    <label class="setting-row"><span>나누기 난이도</span><select id="division-level"><option value="basic">기본 (나눗셈표)</option><option value="advanced">심화 (두 자리 나눗수)</option><option value="mixed">혼합 출제</option></select></label>
+    <label class="setting-row"><span>수치형 문제 정답 방식</span><select id="answer-style"><option value="choice">4지선다 (빠른 반복)</option><option value="input">직접 입력 (암기 확인)</option></select></label>
+    <label class="setting-row"><span>표 자료 유형</span><select id="table-preset"><option value="mixed">혼합 출제</option><option value="finance">기업 재무 현황</option><option value="industry">산업군별 지수</option><option value="monthly">월별 민원 현황</option><option value="kindergarten">유치원 현황</option></select></label>
+    <label class="setting-row"><span>표 탐색 선지 수</span><select id="table-options"><option value="2">2개</option><option value="3">3개</option><option value="4">4개</option></select></label>
+    <label class="setting-row"><span>집합 추론 문제 유형</span><select id="reasoning-style"><option value="mixed">혼합 출제</option><option value="conclusion">참인 결론 찾기</option><option value="bridge">중간 다리 명제 찾기</option></select></label>
+    <label class="setting-row"><span>효과음</span><input id="setting-sound" type="checkbox"></label>
+    <label class="setting-row"><span>진동 피드백 (지원 기기)</span><input id="setting-haptics" type="checkbox"></label>
+    <div class="modal-footer"><button class="primary-btn" id="close-settings">설정 저장</button></div></div>`;
+    document.body.appendChild(overlay);
+    $('#question-count',overlay).value=String(state.settings.questionCount);
+    $('#answer-style',overlay).value=state.settings.answerStyle;
+    $('#division-level',overlay).value=state.settings.divisionLevel||'mixed';
+    $('#table-preset',overlay).value=state.settings.tablePreset;
+    $('#table-options',overlay).value=String(state.settings.tableOptions||2);
+    $('#reasoning-style',overlay).value=state.settings.reasoningStyle||'mixed';
+    $('#setting-sound',overlay).checked=state.settings.sound;
+    $('#setting-haptics',overlay).checked=state.settings.haptics;
+    const close=()=>{
+      state.settings.questionCount=Number($('#question-count',overlay).value);
+      state.settings.answerStyle=$('#answer-style',overlay).value;
+      state.settings.divisionLevel=$('#division-level',overlay).value;
+      state.settings.tablePreset=$('#table-preset',overlay).value;
+      state.settings.tableOptions=Number($('#table-options',overlay).value);
+      state.settings.reasoningStyle=$('#reasoning-style',overlay).value;
+      state.settings.sound=$('#setting-sound',overlay).checked;
+      state.settings.haptics=$('#setting-haptics',overlay).checked;
+      saveState();overlay.remove();
+      if(session)renderQuestion();else if(studyMode)renderStudy(studyMode);else if(monitoring)renderMonitor();else renderHome();
+    };
+    $('#close-settings',overlay).addEventListener('click',close);
+    overlay.addEventListener('click',e=>{if(e.target===overlay)close();});
+    $('#close-settings',overlay).focus();
+  }
+
+  // Local-only monitoring; previous v1 storage key is retained for seamless migration.
+  // Bank keeps exact question snapshots for deterministic replay, including table/logic modes.
+  function questionIdentity(mode,q){
+    if(q._wrongKey)return q._wrongKey;
+    let signature;
+    if(mode==='alphabet')signature=`${q.n}`;
+    else if(mode==='fraction'||mode==='applied')signature=`${q.num}/${q.den}`;
+    else if(mode==='divide')signature=`${q.dividend}/${q.divisor}`;
+    else if(mode==='reversePercent')signature=`${q.percent}:${q.part}`;
+    else if(mode==='fractionCompare')signature=`${q.a}/${q.b}|${q.c}/${q.d}`;
+    else if(mode==='diagram')signature=q.correctKey;
+    else if(mode==='reason')signature=JSON.stringify({t:q.task,p:q.premises,c:q.conclusion});
+    else if(mode==='table')signature=`${q.kind}:`+JSON.stringify(q.rows)+JSON.stringify(q.options.map(o=>o.text));
+    else signature=JSON.stringify(q);
+    return `${mode}|${signature}`;
+  }
+  function questionLabel(mode,q){
+    if(mode==='alphabet')return `${letter(q.n)} = ?`;
+    if(mode==='fraction'||mode==='applied')return `${q.num}/${q.den} = ?%`;
+    if(mode==='divide')return `${q.dividend} ÷ ${q.divisor} = ?`;
+    if(mode==='reversePercent')return `${two(q.part)}은 전체의 ${q.percent}% · 전체는?`;
+    if(mode==='fractionCompare')return `${q.a}/${q.b}  ?  ${q.c}/${q.d}`;
+    if(mode==='diagram')return q.statement;
+    if(mode==='reason')return `${q.task==='bridge'?'중간 명제':'결론'} · ${q.premises.map(reasonText).join(' ')}`;
+    if(mode==='table')return `${q.preset.title} · ${q.numStatements}개 선지`;
+    return modeRegistry.get(mode)?.title||mode;
+  }
+  function recordAnswer(mode,q,correct,elapsed){
+    const stats=state.modeStats[mode]||{attempted:0,right:0,wrong:0,totalMs:0};
+    stats.attempted++;stats.totalMs+=Math.max(0,elapsed);
+    if(correct)stats.right++;else stats.wrong++;
+    state.modeStats[mode]=stats;
+    const key=questionIdentity(mode,q);
+    const existing=state.wrongBank[key];
+    if(correct){
+      if(existing){
+        existing.correctAfterWrong=(existing.correctAfterWrong||0)+1;
+        existing.streak=(existing.streak||0)+1;
+        if(existing.streak>=2)existing.mastered=true;
+        existing.lastResult='correct';existing.updated=Date.now();
+      }
+    }else{
+      // Never persist a recursive/DOM-containing object. Only plain data is saved.
+      const copy=JSON.parse(JSON.stringify(q));delete copy._wrongKey;
+      state.wrongBank[key]={...(existing||{}),id:key,mode,label:questionLabel(mode,q),question:copy,wrongCount:(existing?.wrongCount||0)+1,correctAfterWrong:existing?.correctAfterWrong||0,streak:0,mastered:false,lastResult:'wrong',updated:Date.now()};
+    }
+    const entries=Object.values(state.wrongBank);
+    if(entries.length>125){
+      entries.sort((a,b)=>Number(a.mastered)-Number(b.mastered)||a.updated-b.updated);
+      for(const e of entries.slice(0,entries.length-125))delete state.wrongBank[e.id];
+    }
+  }
+  function getWeakEntries(mode='all'){
+    return Object.values(state.wrongBank).filter(e=>e && !e.mastered && modeRegistry.has(e.mode) && (mode==='all'||e.mode===mode)).sort((a,b)=>b.wrongCount-a.wrongCount||b.updated-a.updated);
+  }
+  function startWrongReview(mode='all'){
+    const entries=getWeakEntries(mode);
+    if(!entries.length){toast('복습할 오답이 없습니다.');return;}
+    const queue=entries.slice(0,Math.max(1,state.settings.questionCount)).map(e=>({id:e.id,mode:e.mode,question:e.question}));
+    startGame(queue[0].mode,queue);
+  }
+  function renderMonitor(){
+    stopParticles();
+    clearTimeout(pendingTimer);tableCleanup();tableCleanup=()=>{};
+    monitoring=true;session=null;currentMode=null;question=null;studyMode=null;
+    const modes=[...modeRegistry.values()];
+    const unresolved=getWeakEntries();
+    const mastered=Object.values(state.wrongBank).filter(e=>e.mastered).length;
+    const totalWrong=modes.reduce((n,m)=>n+(state.modeStats[m.key]?.wrong||0),0);
+    app.innerHTML=`${topbar()}
+      <div class="game-head"><button class="back-btn" id="monitor-back">← 훈련 선택</button><span class="game-caption">LOCAL / PROGRESS</span></div>
+      <div class="monitor-header"><div class="eyebrow">REVIEW / WEAK POINTS</div><h1>오답 모니터링</h1><p>틀렸던 문제를 보관하고, 정답을 연속 2회 맞히면 복습 완료로 표시합니다. 모든 기록은 이 브라우저에만 저장됩니다.</p></div>
+      <div class="stats-grid monitor-stats"><div class="stat"><b>${two(totalWrong)}</b><span>누적 오답 횟수</span></div><div class="stat"><b>${unresolved.length}</b><span>복습 대기 문제</span></div><div class="stat"><b>${mastered}</b><span>복습 완료 문제</span></div></div>
+      <div class="monitor-toolbar"><button type="button" id="review-all" class="primary-btn" ${unresolved.length?'':'disabled'}>오답 집중 훈련 (${Math.min(unresolved.length,state.settings.questionCount)}문제) →</button><span class="monitor-help">틀린 문제를 그대로 다시 출제합니다.</span></div>
+      <h2 class="monitor-heading">게임별 훈련 기록</h2>
+      <div class="mode-stat-list">${modes.map(m=>{
+        const s=state.modeStats[m.key]||{attempted:0,right:0,wrong:0,totalMs:0};
+        const rate=s.attempted?Math.round(s.right/s.attempted*100):null;
+        const waiting=getWeakEntries(m.key).length;
+        return `<div class="mode-stat-row"><div class="mode-stat-name"><strong>${escapeHtml(m.title)}</strong><small>${s.attempted}회 풀이 · 오답 ${s.wrong}회 · 평균 ${s.attempted?(s.totalMs/s.attempted/1000).toFixed(1)+'초':'—'}</small></div><div class="stat-rate"><strong>${rate===null?'—':rate+'%'}</strong><small>정답률</small></div><button type="button" data-review-mode="${escapeHtml(m.key)}" class="secondary-btn stat-review" ${waiting?'':'disabled'}>복습 ${waiting}</button></div>`;
+      }).join('')}</div>
+      <div class="monitor-list-head"><h2 class="monitor-heading">오답 목록</h2><label>유형 <select id="monitor-filter"><option value="all">전체</option>${modes.map(m=>`<option value="${escapeHtml(m.key)}">${escapeHtml(m.title)}</option>`).join('')}</select></label></div>
+      <div id="monitor-items"></div>
+      <div class="monitor-footer"><button class="secondary-btn" id="clear-weak">오답 기록만 초기화</button><p>기록을 초기화해도 누적 풀이 및 게임별 정답률은 유지됩니다. 브라우저 데이터 삭제 또는 기기 변경 시 기록은 이전되지 않습니다.</p></div>`;
+    bindTopbar();
+    $('#monitor-back').addEventListener('click',exitGame);
+    $('#review-all').addEventListener('click',()=>startWrongReview('all'));
+    $$('[data-review-mode]').forEach(b=>b.addEventListener('click',()=>startWrongReview(b.dataset.reviewMode)));
+    const showList=()=>{
+      const filter=$('#monitor-filter').value;
+      const list=getWeakEntries(filter);
+      $('#monitor-items').innerHTML=list.length?list.slice(0,60).map(e=>`<div class="wrong-list-item"><div><small>${escapeHtml(modeRegistry.get(e.mode)?.title||e.mode)} · ${new Date(e.updated).toLocaleDateString('ko-KR')}</small><strong>${escapeHtml(e.label)}</strong></div><span class="wrong-badge">오답 ${e.wrongCount}회 · 재정답 ${e.streak}/2</span></div>`).join(''):`<div class="monitor-empty">${filter==='all'?'복습 대기 중인 오답이 없습니다.':'이 유형에 복습할 오답이 없습니다.'}</div>`;
+    };
+    $('#monitor-filter').addEventListener('change',showList);showList();
+    $('#clear-weak').addEventListener('click',()=>{
+      if(!Object.keys(state.wrongBank).length){toast('저장된 오답 기록이 없습니다.');return;}
+      if(confirm('저장된 오답 문제와 복습 상태를 초기화할까요? 누적 정답률은 유지됩니다.')){
+        state.wrongBank={};saveState();renderMonitor();
+      }
+    });
+  }
+
+  function startGame(key, reviewQueue=null){
+    const mode=modeRegistry.get(key);if(!mode)return;
+    monitoring=false;
+    clearTimeout(pendingTimer);tableCleanup();tableCleanup=()=>{};
+    currentMode=mode;
+    session={mode:reviewQueue?'review':key,limit:reviewQueue?reviewQueue.length:state.settings.questionCount,index:0,correct:0,combo:0,bestCombo:0,elapsed:0,locked:false,startTime:Date.now(),mistakes:0,lastQuestionSignature:null,review:!!reviewQueue,reviewQueue};
+    nextQuestion();
+  }
+  function nextQuestion(){
+    if(!session)return;
+    tableCleanup();tableCleanup=()=>{};selectedCell=null;
+    if(session.index>=session.limit){finishGame();return;}
+    if(session.review){
+      const item=session.reviewQueue[session.index];
+      currentMode=modeRegistry.get(item.mode);
+      question=JSON.parse(JSON.stringify(item.question));
+      question._wrongKey=item.id;
+      if(item.mode==='table'){
+        question.errors=0;
+        question.slots.forEach(slot=>slot.filled=false);
+        question.options.forEach(opt=>opt.slots.forEach(slot=>slot.filled=false));
+      }
+    }else{
+      question=currentMode.makeQuestion({session,state,random,pick,shuffle});
+    }
+    session.questionStarted=performance.now();session.locked=false;
+    renderQuestion();
+  }
+  function gameHeader(){
+    const n=session.index+1,limit=session.limit;
+    return `${topbar()}<div class="game-head"><button class="back-btn" id="go-home">← 훈련 선택</button><span class="game-caption">${session.review?'오답 복습 · ':''}${n} / ${limit} QUESTION</span></div>
+    <div class="game-banner"><div><div class="eyebrow">${escapeHtml(currentMode.tag||'SPEED DRILL')}</div><h1>${escapeHtml(currentMode.title)}</h1></div><div class="combo-chip ${session.combo>=2?'active':''}"><strong>${session.combo}</strong><small>COMBO</small></div></div>
+    <div class="progress-track"><div class="progress-fill" style="width:${Math.round(100*session.index/limit)}%"></div></div>
+    <div class="game-metrics"><span>정답 <b>${session.correct}</b> / ${session.index}</span><span>평균 ${session.index?(session.elapsed/session.index/1000).toFixed(1):'—'}초</span></div>`;
+  }
+  function renderQuestion(){
+    if(!session||!question)return;
+    stopParticles();
+    tableCleanup();tableCleanup=()=>{};
+    app.innerHTML=`${gameHeader()}<main id="question-content">${currentMode.render(question,{settings:state.settings,session})}</main>`;
+    bindTopbar();$('#go-home')?.addEventListener('click',exitGame);
+    currentMode.mount(question,{
+root:$('#question-content'),submit:submitAnswer,toast,settings:state.settings,session});
+  }
+  function submitAnswer(value,origin){
+    if(!session||session.locked)return;
+    const elapsed=performance.now()-session.questionStarted;
+    const result=currentMode.checkAnswer(question,value,{settings:state.settings,session});
+    if(result===null)return;
+    session.locked=true;
+    session.elapsed+=elapsed;
+    session.index++;
+    state.totalAnswered++;
+    const correct=typeof result==='object'?Boolean(result.correct):Boolean(result);
+    const explanation=typeof result==='object'?result.explanation:question.answerText;
+    recordAnswer(currentMode.key,question,correct,elapsed);
+    if(correct){
+      state.totalRight++;session.correct++;session.combo++;
+      session.bestCombo=Math.max(session.bestCombo,session.combo);
+      state.bestCombo=Math.max(state.bestCombo,session.combo);
+      origin?.classList?.add('correct');
+      feedback(true,explanation);successEffect(session.combo,origin);
+      playSuccess(session.combo);
+      if(state.settings.haptics&&navigator.vibrate)navigator.vibrate(session.combo>=5?[25,30,35]:18);
+    }else{
+      session.combo=0;session.mistakes++;
+      origin?.classList?.add('wrong');
+      feedback(false,explanation);
+      playWrong();if(state.settings.haptics&&navigator.vibrate)navigator.vibrate([60,40,60]);
+    }
+    saveState();
+    $$('#question-content button, #question-content input, #question-content select').forEach(el=>{el.disabled=true;});
+    pendingTimer=setTimeout(()=>{if(session)nextQuestion();},correct?900:1750);
+  }
+  function feedback(correct,explanation){
+    const el=$('#answer-feedback')||$('#table-feedback');if(!el)return;
+    el.textContent=correct?'정답! '+(explanation||''):'오답 · '+(explanation||'');
+    el.classList.remove('ok','no');el.classList.add(correct?'ok':'no');
+  }
+  function finishGame(){
+    tableCleanup();tableCleanup=()=>{};clearTimeout(pendingTimer);
+    const result={mode:session.mode,date:new Date().toISOString(),limit:session.limit,correct:session.correct,avgSec:Number((session.elapsed/session.limit/1000).toFixed(2)),bestCombo:session.bestCombo};
+    state.records.unshift(result);state.records=state.records.slice(0,100);saveState();
+    const accuracy=Math.round(100*session.correct/session.limit);
+    app.innerHTML=`${topbar()}<div class="session-finish"><div class="finish-kicker">SESSION COMPLETE</div><div class="finish-percent">${accuracy}%</div><div class="finish-title">${accuracy===100?'완벽한 한 세트':accuracy>=80?'안정적인 속도 훈련':accuracy>=50?'반복할수록 빨라집니다':'한 번 더 연습해 보세요'}</div>
+    <div class="finish-grid"><div class="finish-stat"><b>${session.correct}/${session.limit}</b><span>정답</span></div><div class="finish-stat"><b>${result.avgSec.toFixed(1)}s</b><span>문제당 평균</span></div><div class="finish-stat"><b>${session.bestCombo}</b><span>최고 콤보</span></div></div>
+    <div class="finish-actions"><button class="secondary-btn" id="finish-home">모드 선택</button><button class="secondary-btn" id="finish-monitor">오답 모니터링</button><button class="primary-btn" id="retry">${session.review?'남은 오답 다시 풀기 →':'같은 훈련 다시 하기 →'}</button></div></div>`;
+    bindTopbar();$('#finish-home').addEventListener('click',exitGame);$('#retry').addEventListener('click',()=>session.review?startWrongReview('all'):startGame(result.mode));
+    $('#finish-monitor').addEventListener('click',renderMonitor);
+    if(session.review && !getWeakEntries().length){$('#retry').disabled=true;$('#retry').textContent='복습 완료';}
+    if(accuracy>=90){successEffect(Math.max(session.bestCombo,8),$('.finish-percent'));playSuccess(7);}
+  }
+
+  function toast(message){
+    const el=$('#toast');el.textContent=message;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),1450);
+  }
+  function obtainAudio(){
+    if(!state.settings.sound)return null;
+    try{audioContext ||= new (window.AudioContext||window.webkitAudioContext)();if(audioContext.state==='suspended')audioContext.resume();return audioContext;}catch{return null;}
+  }
+  function tone(ctx,freq,start,duration,kind='sine',volume=.06){
+    const o=ctx.createOscillator(),g=ctx.createGain();o.type=kind;o.frequency.setValueAtTime(freq,start);
+    g.gain.setValueAtTime(.0001,start);g.gain.exponentialRampToValueAtTime(Math.max(.001,volume),start+.012);
+    g.gain.exponentialRampToValueAtTime(.0001,start+duration);o.connect(g).connect(ctx.destination);o.start(start);o.stop(start+duration+.035);
+  }
+  function playSuccess(combo){
+    const ctx=obtainAudio();if(!ctx)return;const t=ctx.currentTime+.008;
+    const scale=[523.25,659.25,783.99,1046.5,1318.5,1568];
+    const n=Math.min(6,2+Math.floor(combo/2));
+    for(let i=0;i<n;i++){tone(ctx,scale[i],t+i*.075,.16+Math.min(combo,8)*.012,'sine',.058);tone(ctx,scale[i]*2,t+i*.075+.015,.065,'triangle',.013);}
+    if(combo>=3){tone(ctx,196,t,.20,'triangle',.040);tone(ctx,1046.5,t+.28,.45,'sine',.030);}
+    if(combo>=5){[1760,2093,2637,3136].forEach((f,i)=>tone(ctx,f,t+.18+i*.07,.18,'sine',.014));}
+  }
+  function playWrong(){const ctx=obtainAudio();if(!ctx)return;const t=ctx.currentTime;tone(ctx,210,t,.16,'triangle',.035);tone(ctx,155,t+.1,.2,'triangle',.030);}
+  function stopParticles(){
+    particles=[];animating=false;
+    fxCtx.clearRect(0,0,canvasW,canvasH);
+    $('#celebration')?.classList.remove('show');
+  }
+  function resizeCanvas(){
+    fxRatio=Math.min(devicePixelRatio||1,2);canvasW=innerWidth;canvasH=innerHeight;
+    fxCanvas.width=Math.round(canvasW*fxRatio);fxCanvas.height=Math.round(canvasH*fxRatio);
+    fxCtx.setTransform(fxRatio,0,0,fxRatio,0,0);
+  }
+  function successEffect(combo,origin){
+    if(reducedMotion)return;
+    resizeCanvas();
+    const rect=origin?.getBoundingClientRect?.();
+    const x=rect?rect.left+rect.width/2:canvasW/2;
+    const y=rect?rect.top+rect.height/2:canvasH*.42;
+    const colors=['#ff4d9c','#ffd653','#47d8fb','#7b65ff','#52eaae','#ff8965','#fff26d'];
+    const count=Math.min(165,24+combo*8);
+    for(let i=0;i<count;i++){
+      const a=Math.random()*Math.PI*2,speed=(1.6+Math.random()*5.8)*(combo>=5?1.3:1);
+      particles.push({x,y,vx:Math.cos(a)*speed,vy:Math.sin(a)*speed-2.5,rot:Math.random()*6.28,vr:(Math.random()-.5)*.24,life:42+Math.random()*55,maxLife:94,w:3+Math.random()*6,h:3+Math.random()*9,color:pick(colors),kind:Math.random()<.3?'star':'confetti',gravity:.12+Math.random()*.10});
+    }
+    if(combo>=2){
+      const el=$('#celebration');el.textContent=combo>=10?`✦ ${combo} MEGA COMBO ✦`:`${combo} COMBO!`;
+      el.classList.remove('show');void el.offsetWidth;el.classList.add('show');
+    }
+    if(!animating){animating=true;requestAnimationFrame(animateFx);}
+  }
+  function animateFx(){
+    fxCtx.clearRect(0,0,canvasW,canvasH);
+    particles=particles.filter(p=>p.life>0);
+    particles.forEach(p=>{
+      p.life-=1;p.x+=p.vx;p.y+=p.vy;p.vy+=p.gravity;p.vx*=.994;p.rot+=p.vr;
+      fxCtx.globalAlpha=Math.min(1,p.life/23);fxCtx.fillStyle=p.color;fxCtx.save();fxCtx.translate(p.x,p.y);fxCtx.rotate(p.rot);
+      if(p.kind==='star'){
+        fxCtx.beginPath();for(let j=0;j<10;j++){const r=j%2?p.w*.47:p.w*1.65;const theta=(j*Math.PI/5)-Math.PI/2;const xx=Math.cos(theta)*r, yy=Math.sin(theta)*r;j?fxCtx.lineTo(xx,yy):fxCtx.moveTo(xx,yy);}fxCtx.closePath();fxCtx.fill();
+      }else{fxCtx.fillRect(-p.w/2,-p.h/2,p.w,p.h);}
+      fxCtx.restore();
+    });fxCtx.globalAlpha=1;
+    if(particles.length)requestAnimationFrame(animateFx);else{animating=false;fxCtx.clearRect(0,0,canvasW,canvasH);}
+  }
+  addEventListener('resize',()=>{if(particles.length)resizeCanvas();});
+
+  // 1. Alphabet positions A=1 ... Z=26. Keeps weak letters in rotation within a set.
+  registerMode({
+    key:'alphabet',title:'알파벳 번호',subtitle:'A=1부터 Z=26까지 즉시 변환. 숫자를 직접 입력하세요.',tag:'LETTER → NUMBER',art:'A↔26',
+    makeQuestion({session}){
+      let n=random(1,26);if(session.lastQuestionSignature===n)n=n%26+1;session.lastQuestionSignature=n;
+      return {n,answer:n,answerText:`${letter(n)} = ${n}`};
+    },
+    render(q){return `<section class="question-card"><div class="question-label">POSITION OF LETTER</div><div class="big-question">${letter(q.n)}</div><div class="question-instruction">이 알파벳은 몇 번째일까요?</div>
+      <form class="answer-form" id="answer-form"><input class="answer-input" id="answer-input" type="number" min="1" max="26" inputmode="numeric" autocomplete="off" placeholder="1~26" aria-label="알파벳 순서 번호"><button class="primary-btn" type="submit">확인 ↗</button></form><div class="feedback" id="answer-feedback"></div></section><div class="shortcut-note">A=1 · M=13 · Z=26 | Enter로도 정답 제출</div>`;},
+    mount(q,{root,submit}){$('#answer-form',root).addEventListener('submit',e=>{e.preventDefault();const raw=$('#answer-input',root).value;if(raw==='')return;submit(Number(raw),$('button[type=submit]',root));});},
+    checkAnswer(q,value){return Number(value)===q.n;}
+  });
+
+  function makeFractionQuestion(applied,session){
+    let den=applied?random(3,20):random(2,20);
+    let num=applied?random(2,den-1):1;
+    if(session.lastQuestionSignature===`${num}/${den}`){den=den===20?2:den+1;if(applied&&den<3)den=3;num=applied?Math.min(num,den-1):1;}
+    session.lastQuestionSignature=`${num}/${den}`;
+    const exact=percentage(num,den),answer=Number(exact.toFixed(2));
+    const alternatives=new Set([answer.toFixed(2)]);
+    const candidates=[percentage(num,den+1),percentage(num,Math.max(2,den-1)),percentage(Math.max(1,num-1),den),percentage(num+1,den),exact+5,exact-5,exact+2.5,exact-2.5,exact+10,exact-10];
+    shuffle(candidates).forEach(v=>{if(alternatives.size>=4)return;const r=Number(Math.max(.01,Math.min(99.99,v)).toFixed(2));if(Math.abs(r-answer)>=.3)alternatives.add(r.toFixed(2));});
+    while(alternatives.size<4){const v=Math.max(.01,Math.min(99.99,answer+(random(-12,12)*.75)));if(Math.abs(v-answer)>.3)alternatives.add(v.toFixed(2));}
+    return {num,den,answer,answerText:`${num}/${den} = ${fixed2(exact)}%`,choices:shuffle([...alternatives].map(Number))};
+  }
+  function renderFractionQuestion(q,{settings}){
+    const choice=settings.answerStyle==='choice';
+    return `<section class="question-card"><div class="question-label">FRACTION → PERCENT</div><div class="fraction-question"><div class="fraction-numer">${q.num}</div><div class="fraction-line"></div><div class="fraction-denom">${q.den}</div></div><div class="question-instruction">백분율로 환산하면? ${choice?'정답을 선택하세요.':'퍼센트 숫자를 직접 입력하세요.'}</div>
+    ${choice?`<div class="choice-grid">${q.choices.map(p=>`<button class="choice" data-choice="${p}">${fixed2(p)}%</button>`).join('')}</div>`:`<form class="answer-form" id="answer-form"><input class="answer-input" id="answer-input" type="number" inputmode="decimal" step="any" placeholder="예: 16.67" aria-label="퍼센트 숫자"><span class="answer-suffix">%</span><button class="primary-btn" type="submit">확인 ↗</button></form>`}<div class="feedback" id="answer-feedback"></div></section><div class="shortcut-note">${choice?'설정에서 직접 입력 모드로 변경 가능':'소수점 둘째 자리까지 허용 오차 ±0.11%p'}</div>`;
+  }
+  function mountFractionQuestion(q,{root,submit}){
+    $$('.choice',root).forEach(b=>b.addEventListener('click',()=>submit(Number(b.dataset.choice),b)));
+    $('#answer-form',root)?.addEventListener('submit',e=>{e.preventDefault();const raw=$('#answer-input',root).value;if(raw==='')return;submit(Number(raw),$('button[type=submit]',root));});
+  }
+  const fractionCheck=(q,value)=>Number.isFinite(Number(value))&&Math.abs(Number(value)-q.answer)<=.111;
+  registerMode({key:'fraction',title:'분수 비율표',subtitle:'1/2~1/20을 백분율로 변환. 50%, 33.33% 등을 자동화하세요.',tag:'MEMORY / 1÷N',art:'1/20',
+    makeQuestion:({session})=>makeFractionQuestion(false,session),render:renderFractionQuestion,mount:mountFractionQuestion,checkAnswer:fractionCheck});
+  registerMode({key:'applied',title:'분수 응용',subtitle:'3/5, 7/12처럼 분자를 확장해 비율을 빠르게 계산합니다.',tag:'MENTAL MATH / N÷M',art:'3/5',
+    makeQuestion:({session})=>makeFractionQuestion(true,session),render:renderFractionQuestion,mount:mountFractionQuestion,checkAnswer:fractionCheck});
+
+
+  // 4. Exact division practice. Two levels; answers always integer (no rounding trap).
+  registerMode({key:'divide',title:'나누기',subtitle:'정확하게 나누어떨어지는 계산을 빠르게 암산합니다.',tag:'MENTAL MATH / DIVIDE',art:'÷',
+    makeQuestion({session,state}){
+      const level=state.settings.divisionLevel==='mixed'?pick(['basic','advanced']):state.settings.divisionLevel;
+      let divisor,quotient,dividend,signature,tries=0;
+      do{
+        divisor=level==='basic'?random(2,12):random(11,25);
+        quotient=level==='basic'?random(3,18):random(11,45);
+        dividend=divisor*quotient;
+        signature=`${dividend}/${divisor}`;
+      }while(signature===session.lastQuestionSignature&&++tries<20);
+      session.lastQuestionSignature=signature;
+      return {dividend,divisor,answer:quotient,answerText:`${two(dividend)} ÷ ${divisor} = ${quotient}`,level};
+    },
+    render(q){return `<section class="question-card"><div class="question-label">DIVISION / ${q.level==='basic'?'BASIC':'ADVANCED'}</div><div class="math-equation">${two(q.dividend)} <span>÷</span> ${q.divisor}</div><div class="question-instruction">몫을 입력하세요. (나머지 없음)</div><form class="answer-form" id="answer-form"><input class="answer-input" id="answer-input" type="number" inputmode="numeric" min="0" step="1" autocomplete="off" placeholder="정답" aria-label="나누기 몫"><button type="submit" class="primary-btn">확인 ↗</button></form><div class="feedback" id="answer-feedback"></div></section><div class="shortcut-note">난이도는 설정에서 변경할 수 있습니다.</div>`;},
+    mount(q,{root,submit}){$('#answer-form',root).addEventListener('submit',e=>{e.preventDefault();const el=$('#answer-input',root);if(el.value.trim()!=='')submit(Number(el.value),$('button[type=submit]',root));});},
+    checkAnswer(q,value){return Number(value)===q.answer;}
+  });
+
+  function numericChoices(correct, count=4){
+    const candidates=new Set([correct]);
+    const tweaks=[-25,-20,-15,-10,-5,-3,-2,-1,1,2,3,5,10,15,20,25];
+    const base=Math.max(1,Math.round(correct*.1));
+    for(const t of shuffle(tweaks)){
+      const v=correct+t*(correct>150?base:1);
+      if(v>0 && Number.isInteger(v) && v!==correct)candidates.add(v);
+      if(candidates.size>=count)break;
+    }
+    let i=1;while(candidates.size<count){candidates.add(correct+i*7);i++;}
+    return shuffle([...candidates].slice(0,count));
+  }
+  // 5. Reverse percentage: "part is p% of total" => find the total.
+  registerMode({key:'reversePercent',title:'백분율 역산',subtitle:'전체의 15%가 54일 때 원래 전체가 얼마인지 구합니다.',tag:'RATIO / REVERSE',art:'15%',
+    makeQuestion({session}){
+      const percentages=[2.5,5,7.5,10,12.5,15,17.5,20,25,30,35,37.5,40,45,50,60,75,80];
+      let percent,total,part,sig,tries=0;
+      do{
+        percent=pick(percentages);total=random(2,60)*40;part=total*percent/100;
+        sig=`${percent}:${part}`;
+      }while(sig===session.lastQuestionSignature&&++tries<15);
+      session.lastQuestionSignature=sig;
+      return {percent,total,part,choices:numericChoices(total),answerText:`${two(part)} ÷ (${percent}/100) = ${two(total)}`};
+    },
+    render(q,{settings}){
+      const choice=settings.answerStyle==='choice';
+      return `<section class="question-card"><div class="question-label">REVERSE PERCENTAGE</div><div class="reverse-percent-brief"><span>전체의</span><strong>${q.percent}%</strong><span>가</span><strong>${two(q.part)}</strong><span>입니다.</span></div><div class="question-instruction">전체 값은 얼마일까요?</div>${choice?`<div class="choice-grid">${q.choices.map(c=>`<button type="button" class="choice" data-choice="${c}">${two(c)}</button>`).join('')}</div>`:`<form class="answer-form" id="answer-form"><input class="answer-input" id="answer-input" type="number" inputmode="numeric" step="1" autocomplete="off" placeholder="전체 값" aria-label="전체 값"><button class="primary-btn" type="submit">확인 ↗</button></form>`}<div class="feedback" id="answer-feedback"></div></section>`;
+    },
+    mount(q,{root,submit}){mountFractionQuestion(q,{root,submit});},
+    checkAnswer(q,value){return Number(value)===q.total;}
+  });
+
+  // 6. Compare rational values using exact integer cross products (no rounding errors).
+  function gcd(a,b){while(b){[a,b]=[b,a%b];}return a;}
+  registerMode({key:'fractionCompare',title:'분수 크기 비교',subtitle:'통분 없이 교차곱으로 어느 분수가 더 큰지 판단합니다.',tag:'FRACTION / COMPARE',art:'> <',
+    makeQuestion({session}){
+      let a,b,c,d,ans,signature,tries=0;
+      const equalMode=Math.random()<.16;
+      do{
+        b=random(3,20);a=random(1,b-1);
+        if(equalMode){
+          const g=gcd(a,b),reducedA=a/g,reducedB=b/g;
+          const possibilities=[];
+          for(let factor=1;reducedB*factor<=20;factor++){
+            if(reducedB*factor===b && reducedA*factor===a)continue;
+            possibilities.push([reducedA*factor,reducedB*factor]);
+          }
+          if(!possibilities.length)continue;
+          [c,d]=pick(possibilities);
+        }else{
+          d=random(3,20);c=random(1,d-1);
+          if(a*d===c*b)continue;
+        }
+        signature=`${a}/${b}|${c}/${d}`;
+        if(signature!==session.lastQuestionSignature)break;
+      }while(++tries<120);
+      if(!signature || !b || !d || !a || !c){a=2;b=3;c=3;d=4;}
+      session.lastQuestionSignature=`${a}/${b}|${c}/${d}`;
+      ans=a*d===c*b?'=':a*d>c*b?'>':'<';
+      return {a,b,c,d,answer:ans,answerText:`교차곱 ${a}×${d}=${a*d}, ${c}×${b}=${c*b} → ${ans}`};
+    },
+    render(q){return `<section class="question-card"><div class="question-label">COMPARE FRACTIONS</div><div class="compare-fractions"><div class="math-fraction"><strong>${q.a}</strong><i></i><strong>${q.b}</strong></div><span class="comparison-placeholder">?</span><div class="math-fraction"><strong>${q.c}</strong><i></i><strong>${q.d}</strong></div></div><div class="question-instruction">왼쪽 분수와 오른쪽 분수를 비교하세요.</div><div class="compare-choices"><button class="choice" data-compare="<" type="button">&lt;</button><button class="choice" data-compare="=" type="button">=</button><button class="choice" data-compare=">" type="button">&gt;</button></div><div class="feedback" id="answer-feedback"></div></section>`;},
+    mount(q,{root,submit}){$$('[data-compare]',root).forEach(b=>b.addEventListener('click',()=>submit(b.dataset.compare,b)));},
+    checkAnswer(q,value){return {correct:value===q.answer,explanation:q.answerText};}
+  });
+
+  // 7. Visual search: fill only the numerator/denominator from each numbered statement.
+  // The exam-style layout is inspired by common data interpretation formats; all data are synthetic.
+  const FINANCE_NAMES=['가온전자','미르소재','하람바이오','새빛반도체'];
+  const INDUSTRIES=['고위기술','중고위기술','중저위기술','저위기술'];
+  const YEARS=[2022,2023,2024];
+  const FINANCE_COLS=[{key:'revenue',label:'매출액'},{key:'operating',label:'영업이익'},{key:'net',label:'당기순이익'},{key:'assets',label:'총자산'}];
+  const INDEX_COLS=[{key:'inventory',label:'재고지수'},{key:'shipment',label:'출하지수'}];
+  const MONTH_COLS=[{key:'complaints',label:'민원건수'}];
+  const KINDER_COLS=[{key:'kindergartens',label:'유치원 수'},{key:'children',label:'원아 수'},{key:'teachers',label:'교원 수'}];
+  const keyFor=(row,metric)=>`${row.company}|${row.year}|${metric}`;
+  function generateFinance(){
+    const rows=[],companyBaseline={};
+    FINANCE_NAMES.forEach(c=>companyBaseline[c]={revenue:random(850,3000),om:random(105,235)/1000,nm:random(45,105)/1000,asset:random(2600,6000)});
+    for(const company of FINANCE_NAMES){
+      const b=companyBaseline[company];
+      for(const year of YEARS){
+        const trend=1+(year-2022)*random(-3,18)/100;
+        const revenue=Math.round(b.revenue*trend*random(91,110)/100);
+        const operating=Math.max(1,Math.round(revenue*(b.om+(year-2022)*random(-20,20)/1000)));
+        const net=Math.max(1,Math.round(revenue*(b.nm+(year-2022)*random(-18,18)/1000)));
+        const assets=Math.round(b.asset*(.88+(year-2022)*.052+random(1,22)/100));
+        rows.push({company,year,revenue,operating,net,assets});
+      }
+    }
+    return rows;
+  }
+  function generateIndustry(){
+    const rows=[];
+    for(const company of INDUSTRIES){
+      const inventoryBase=random(88,115),shipmentBase=random(91,118);
+      for(const year of [2021,2022,2023,2024]){
+        const inventory=Number((inventoryBase+random(-85,85)/10+(year-2021)*random(-12,18)/10).toFixed(1));
+        const shipment=Number((shipmentBase+random(-75,75)/10+(year-2021)*random(-15,15)/10).toFixed(1));
+        rows.push({company,year,inventory,shipment});
+      }
+    }
+    return rows;
+  }
+  function generateMonthly(){
+    const rows=[],baselines=Array.from({length:12},()=>random(8500,15000));
+    for(let month=1;month<=12;month++){
+      for(const year of [2023,2024])rows.push({company:`${month}월`,year,complaints:Math.round(baselines[month-1]*(year===2023?1:random(85,125)/100))});
+    }
+    return rows;
+  }
+  function generateKindergarten(){
+    const rows=[];
+    const base={kindergartens:random(310,470),children:random(27000,47000),teachers:random(2300,3600)};
+    for(let year=2018;year<=2024;year++){
+      rows.push({company:'갑시',year,kindergartens:Math.round(base.kindergartens*(1-(year-2018)*.015)+random(-6,6)),children:Math.round(base.children*(1-(year-2018)*.035)+random(-360,360)),teachers:Math.round(base.teachers*(1+(year-2018)*.012)+random(-50,50))});
+    }
+    return rows;
+  }
+  const TABLE_MODES={
+    finance:{title:'기업별 연도별 재무실적 현황',unit:'억 원',cols:FINANCE_COLS},
+    industry:{title:'2021~2024년 산업군별 재고지수 및 출하지수',unit:'2020년=100',cols:INDEX_COLS},
+    monthly:{title:'2023년과 2024년의 월별 민원건수',unit:'건',cols:MONTH_COLS},
+    kindergarten:{title:'2018~2024년 갑시의 유치원 현황',unit:'개, 명',cols:KINDER_COLS}
+  };
+  function makeTableQuestion({state}){
+    const kinds=Object.keys(TABLE_MODES);
+    const chosen=kinds.includes(state.settings.tablePreset)?state.settings.tablePreset:pick(kinds);
+    const preset=TABLE_MODES[chosen];
+    const rows=chosen==='finance'?generateFinance():chosen==='industry'?generateIndustry():chosen==='monthly'?generateMonthly():generateKindergarten();
+    const numStatements=Math.max(1,Math.min(4,Number(state.settings.tableOptions)||2));
+    const options=[],slots=[],signatures=new Set();
+    const numerals=['①','②','③','④'];
+    const template=()=>{
+      const r=pick(rows);
+      let numerator,denominator,text;
+      if(chosen==='finance'){
+        const ratio=pick([
+          ['net','revenue',`매출액 대비 당기순이익 비율`],
+          ['operating','revenue',`매출액 대비 영업이익 비율`],
+          ['net','assets',`총자산 대비 당기순이익 비율`],
+          ['operating','assets',`총자산 대비 영업이익 비율`]
+        ]);
+        [numerator,denominator]=ratio;
+        text=`${r.year}년 ${r.company}의 ${ratio[2]}`;
+      }else if(chosen==='industry'){
+        numerator='inventory';denominator='shipment';
+        text=`${r.year}년 ${r.company}산업군의 재고율`;
+      }else if(chosen==='monthly'){
+        const otherYear=r.year===2024?2023:2024;
+        const base=rows.find(x=>x.year===otherYear&&x.company===r.company);
+        numerator='complaints';denominator='complaints';
+        text=`${r.company} 민원건수의 ${r.year}년 수치가 ${otherYear}년 수치에서 차지하는 비율`;
+        return {text,numRow:r,denRow:base,numerator,denominator};
+      }else{
+        const ratio=pick([
+          ['children','teachers','교원 1인당 원아 수'],
+          ['children','kindergartens','유치원 1곳당 원아 수'],
+          ['teachers','kindergartens','유치원 1곳당 교원 수']
+        ]);
+        [numerator,denominator]=ratio;
+        text=`${r.year}년 갑시의 ${ratio[2]}`;
+      }
+      return {text,numRow:r,denRow:r,numerator,denominator};
+    };
+    for(let i=0;i<numStatements;i++){
+      let candidate,signature='',attempts=0;
+      do{
+        candidate=template();
+        signature=`${candidate.text}|${keyFor(candidate.numRow,candidate.numerator)}|${keyFor(candidate.denRow,candidate.denominator)}`;
+      }while(signatures.has(signature)&&++attempts<160);
+      signatures.add(signature);
+      const numSlot={id:`s${i}-num`,expectedKey:keyFor(candidate.numRow,candidate.numerator),expectedValue:candidate.numRow[candidate.numerator],filled:false};
+      const denSlot={id:`s${i}-den`,expectedKey:keyFor(candidate.denRow,candidate.denominator),expectedValue:candidate.denRow[candidate.denominator],filled:false};
+      slots.push(numSlot,denSlot);
+      options.push({number:numerals[i],text:candidate.text,slots:[numSlot,denSlot]});
+    }
+    return {kind:chosen,preset,rows,options,slots,errors:0,answerText:`${numStatements}개 선지의 자료 탐색 완료`,numStatements};
+  }
+  function numericCell(q,r,key){
+    const label=q.preset.cols.find(c=>c.key===key)?.label;
+    return `<td class="numeric" data-key="${escapeHtml(keyFor(r,key))}" data-value="${r[key]}" tabindex="0" role="button" aria-label="${escapeHtml(`${r.year}년 ${r.company} ${label} ${r[key]}`)}">${two(r[key])}</td>`;
+  }
+  function renderDataTable(q){
+    if(q.kind==='finance'){
+      return `<table class="gsat-table finance-table" id="gsat-table"><thead><tr><th scope="col">기업</th><th scope="col">연도</th>${FINANCE_COLS.map(c=>`<th scope="col">${c.label}</th>`).join('')}</tr></thead><tbody>${q.rows.map((r,i)=>`<tr class="${r.year===2022&&i?'group-start':''}"><th scope="row" class="label-cell">${r.company}</th><td>${r.year}</td>${FINANCE_COLS.map(c=>numericCell(q,r,c.key)).join('')}</tr>`).join('')}</tbody></table>`;
+    }
+    if(q.kind==='industry'){
+      const lines=[];
+      for(const year of [2021,2022,2023,2024]){
+        INDEX_COLS.forEach((col,i)=>lines.push(`<tr class="${i===0&&year!==2021?'group-start':''}">${i===0?`<th scope="rowgroup" rowspan="2" class="label-cell">${year}</th>`:''}<th scope="row" class="label-cell">${col.label}</th>${INDUSTRIES.map(company=>numericCell(q,q.rows.find(r=>r.company===company&&r.year===year),col.key)).join('')}</tr>`));
+      }
+      return `<table class="gsat-table industry-table" id="gsat-table"><thead><tr><th scope="col">연도</th><th scope="col">지수</th>${INDUSTRIES.map(c=>`<th scope="col">${c}<small>산업군</small></th>`).join('')}</tr></thead><tbody>${lines.join('')}</tbody></table>`;
+    }
+    if(q.kind==='kindergarten'){
+      return `<table class="gsat-table kindergarten-table" id="gsat-table"><thead><tr><th scope="col">연도</th>${KINDER_COLS.map(c=>`<th scope="col">${c.label}</th>`).join('')}</tr></thead><tbody>${q.rows.map(r=>`<tr><th scope="row" class="label-cell">${r.year}</th>${KINDER_COLS.map(c=>numericCell(q,r,c.key)).join('')}</tr>`).join('')}</tbody></table>`;
+    }
+    const trs=[];
+    for(let month=1;month<=12;month++){
+      const a=q.rows.find(r=>r.company===`${month}월`&&r.year===2023);
+      const b=q.rows.find(r=>r.company===`${month}월`&&r.year===2024);
+      trs.push(`<tr><th class="label-cell" scope="row">${month}월</th>${numericCell(q,a,'complaints')}${numericCell(q,b,'complaints')}</tr>`);
+    }
+    const sum=y=>q.rows.filter(r=>r.year===y).reduce((n,r)=>n+r.complaints,0);
+    return `<table class="gsat-table monthly-table" id="gsat-table"><thead><tr><th scope="col">월</th><th scope="col">2023년</th><th scope="col">2024년</th></tr></thead><tbody>${trs.join('')}<tr class="group-start total-row"><th scope="row">합계</th><td>${two(sum(2023))}</td><td>${two(sum(2024))}</td></tr></tbody></table>`;
+  }
+  function renderTableQuestion(q){
+    return `<section class="exam-paper" aria-label="자료해석 시험지">
+      <div class="exam-paper-meta"><span>자료해석 · 시선 탐색</span><span>${q.numStatements}개 선지</span></div>
+      <div class="exam-question">다음 <span class="exam-bracket">&lt;표&gt;</span>를 보고 각 선지에 필요한 수치를 찾으시오.</div>
+      <div class="exam-options">${q.options.map(opt=>`<div class="exam-option"><div class="exam-option-text"><span class="exam-option-number">${opt.number}</span><span>${escapeHtml(opt.text)}</span></div><div class="exam-option-ratio"><div class="drop-slot" data-drop="${opt.slots[0].id}" tabindex="0" role="button" aria-label="${escapeHtml(opt.number)} 분자" aria-description="표에서 분자에 해당하는 수치를 선택하세요"><span class="slot-val" aria-hidden="true"></span></div><span class="fraction-slash" aria-hidden="true">/</span><div class="drop-slot" data-drop="${opt.slots[1].id}" tabindex="0" role="button" aria-label="${escapeHtml(opt.number)} 분모" aria-description="표에서 분모에 해당하는 수치를 선택하세요"><span class="slot-val" aria-hidden="true"></span></div></div></div>`).join('')}</div>
+      <div class="exam-table-wrap"><div class="exam-table-title">&lt;표&gt; ${escapeHtml(q.preset.title)}</div><div class="exam-table-unit">(단위: ${escapeHtml(q.preset.unit)})</div>
+      <div class="table-viewport" id="table-viewport" aria-label="${escapeHtml(q.preset.title)}" tabindex="0">${renderDataTable(q)}</div>
+      <div class="table-bottom"><span class="table-legend">※ 가상 자료 · 셀을 탭하거나 길게 누른 후 드래그</span><button class="table-zoom-btn" id="table-zoom" type="button" aria-pressed="false">표 크게 보기 +</button></div></div>
+      </section><div class="table-feedback" id="table-feedback" aria-live="polite"></div>`;
+  }
+  function mountTableQuestion(q,{root,submit}){
+    const viewport=$('#table-viewport',root),table=$('#gsat-table',root);
+    let interaction=null,selected=null,dragGhost=null,active=true;
+    function notifyWrong(slotEl){
+      if(!slotEl)return;
+      q.errors++;
+      slotEl.classList.add('drop-error');setTimeout(()=>slotEl?.classList.remove('drop-error'),410);
+      if(state.settings.haptics&&navigator.vibrate)navigator.vibrate(38);
+      playWrong();
+      const message=$('#table-feedback',root);
+      if(message){message.textContent='항목 · 연도 · 분류를 다시 확인하세요.';message.classList.add('no');}
+      if(session){session.combo=0;session.mistakes++;const chip=$('.combo-chip');chip?.classList.remove('active');const num=$('.combo-chip strong');if(num)num.textContent='0';}
+    }
+    function fill(slotEl,cell){
+      if(!active||!slotEl||!cell||session?.locked)return;
+      const slot=q.slots.find(s=>s.id===slotEl.dataset.drop);if(!slot)return;
+      if(slot.expectedKey!==cell.dataset.key){notifyWrong(slotEl);return;}
+      slot.filled=true;slotEl.classList.add('filled');
+      $('.slot-val',slotEl).textContent=two(Number(cell.dataset.value));
+      const feedbackEl=$('#table-feedback',root);
+      feedbackEl.classList.remove('no');feedbackEl.textContent='';
+      if(selected){selected.classList.remove('cell-picked');selected=null;}
+      if(q.slots.every(s=>s.filled)){
+        const el=$('.exam-option-ratio',root);
+        if(feedbackEl)feedbackEl.textContent=q.errors?'탐색 완료 · 잘못 고른 셀이 있었습니다.':'모든 선지를 정확하게 찾았습니다.';
+        submit({complete:true,errors:q.errors},el);
+      }
+    }
+    function selectCell(cell){
+      if(selected)selected.classList.remove('cell-picked');
+      selected=cell;cell.classList.add('cell-picked');
+    }
+    function clearDrag(){
+      if(dragGhost){dragGhost.remove();dragGhost=null;}
+      $$('.drop-active',root).forEach(el=>el.classList.remove('drop-active'));
+    }
+    function beginDrag(p){
+      if(!p||p.scrolling||!active||session?.locked)return;
+      p.dragging=true;if(p.timer)clearTimeout(p.timer);
+      dragGhost=document.createElement('div');dragGhost.className='drag-ghost';dragGhost.textContent=two(Number(p.cell.dataset.value));document.body.appendChild(dragGhost);
+      dragGhost.style.left=p.x+'px';dragGhost.style.top=p.y+'px';
+      $$('.drop-slot',root).forEach(s=>s.classList.add('drop-active'));
+    }
+    function pointerdown(e){
+      if(!active||session?.locked)return;
+      const cell=e.target.closest('td.numeric');if(!cell)return;
+      if(e.pointerType==='mouse')e.preventDefault();
+      interaction={pointerId:e.pointerId,cell,startX:e.clientX,startY:e.clientY,startPageY:window.scrollY,x:e.clientX,y:e.clientY,scrollLeft:viewport.scrollLeft,scrolling:false,dragging:false,timer:null,type:e.pointerType};
+      if(e.pointerType==='touch'||e.pointerType==='pen')interaction.timer=setTimeout(()=>beginDrag(interaction),290);
+    }
+    function pointermove(e){
+      const p=interaction;if(!p||e.pointerId!==p.pointerId)return;
+      p.x=e.clientX;p.y=e.clientY;
+      const dx=e.clientX-p.startX,dy=e.clientY-p.startY;
+      if(!p.dragging){
+        if(p.type==='mouse'){if(Math.hypot(dx,dy)>7)beginDrag(p);}
+        else if(Math.hypot(dx,dy)>9){p.scrolling=true;clearTimeout(p.timer);
+          if(Math.abs(dx)>Math.abs(dy)*1.12)viewport.scrollLeft=p.scrollLeft-dx;
+          else window.scrollTo(window.scrollX,p.startPageY-dy);
+        }
+      }
+      if(p.dragging&&dragGhost){
+        dragGhost.style.left=e.clientX+'px';dragGhost.style.top=e.clientY+'px';
+        if(e.clientY<60)window.scrollBy(0,-16);
+        if(e.clientY>window.innerHeight-60)window.scrollBy(0,16);
+      }
+    }
+    function pointerup(e){
+      const p=interaction;if(!p||e.pointerId!==p.pointerId)return;
+      clearTimeout(p.timer);
+      if(p.dragging){const target=document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-drop]');if(target)fill(target,p.cell);}
+      else if(!p.scrolling)selectCell(p.cell);
+      clearDrag();interaction=null;
+    }
+    function pointercancel(e){const p=interaction;if(!p||e.pointerId!==p.pointerId)return;clearTimeout(p.timer);clearDrag();interaction=null;}
+    table.addEventListener('pointerdown',pointerdown);
+    document.addEventListener('pointermove',pointermove);
+    document.addEventListener('pointerup',pointerup);
+    document.addEventListener('pointercancel',pointercancel);
+    const keydown=e=>{const cell=e.target.closest('td.numeric');if(cell&&(e.key==='Enter'||e.key===' ')){e.preventDefault();selectCell(cell);}};
+    table.addEventListener('keydown',keydown);
+    const onSlotClick=e=>{if(selected)fill(e.currentTarget,selected);};
+    const onSlotKeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();onSlotClick({currentTarget:e.currentTarget});}};
+    $$('.drop-slot',root).forEach(el=>{el.addEventListener('click',onSlotClick);el.addEventListener('keydown',onSlotKeydown);});
+    const zoomBtn=$('#table-zoom',root);
+    zoomBtn.addEventListener('click',()=>{
+      const enlarged=viewport.classList.toggle('table-enlarged');
+      zoomBtn.textContent=enlarged?'표 전체 보기 −':'표 크게 보기 +';
+      zoomBtn.setAttribute('aria-pressed',String(enlarged));
+      viewport.scrollLeft=0;
+    });
+    tableCleanup=()=>{
+      active=false;document.removeEventListener('pointermove',pointermove);document.removeEventListener('pointerup',pointerup);document.removeEventListener('pointercancel',pointercancel);
+      if(interaction?.timer)clearTimeout(interaction.timer);clearDrag();
+    };
+  }
+  registerMode({key:'table',title:'표 탐색 · 선지',subtitle:'선지를 읽고 표에서 분자와 분모를 찾아 채우세요.',tag:'VISUAL SCAN / DATA',art:'▦',
+    makeQuestion:makeTableQuestion,render:renderTableQuestion,mount:mountTableQuestion,
+    checkAnswer(q,value){return {correct:Boolean(value?.complete)&&q.errors===0,explanation:q.errors?`잘못 선택한 셀 ${q.errors}회 · 정확도를 높여보세요.`:q.answerText};}
+  });
+
+  // Basic categorical Venn practice is a distinct submode within the logic card.
+  // A gray/shaded region means EMPTY; × means at least one EXISTING member.
+  // Crucially, overlap of the printed circles is not an existential assertion.
+  const DIAGRAM_TYPES=[
+    {key:'allAB',text:'모든 A는 B이다.',relation:'A ⊆ B',region:'aOnly',mark:'shade',explain:'A 중 B 밖에 있는 부분이 비어 있습니다. A가 실제로 존재한다는 뜻은 아닙니다.'},
+    {key:'allBA',text:'모든 B는 A이다.',relation:'B ⊆ A',region:'bOnly',mark:'shade',explain:'B 중 A 밖에 있는 부분이 비어 있습니다. B가 실제로 존재한다는 뜻은 아닙니다.'},
+    {key:'noneAB',text:'어떤 A도 B가 아니다.',relation:'A ∩ B = ∅',region:'overlap',mark:'shade',explain:'A와 B의 공통 부분에는 어떤 대상도 존재하지 않습니다.'},
+    {key:'someAB',text:'어떤 A는 B이다.',relation:'A ∩ B ≠ ∅',region:'overlap',mark:'x',explain:'A와 B에 동시에 속하는 대상이 적어도 하나 존재합니다.'},
+    {key:'someAnotB',text:'어떤 A는 B가 아니다.',relation:'A ∖ B ≠ ∅',region:'aOnly',mark:'x',explain:'A에는 속하지만 B에는 속하지 않는 대상이 적어도 하나 있습니다.'},
+    {key:'someBnotA',text:'어떤 B는 A가 아니다.',relation:'B ∖ A ≠ ∅',region:'bOnly',mark:'x',explain:'B에는 속하지만 A에는 속하지 않는 대상이 적어도 하나 있습니다.'}
+  ];
+  let diagramSvgCounter=0;
+  function diagramSvg(type,{compact=false}={}){
+    const id='venn-'+(++diagramSvgCounter);
+    // Two overlapping circles are deliberately kept fixed across all answers.
+    // It is the shading / witness X that carries the logical meaning.
+    let shade='';
+    if(type.mark==='shade'){
+      if(type.region==='aOnly')shade=`<circle cx="103" cy="76" r="57" fill="#abb5c5" opacity=".76" clip-path="url(#${id}-a)" mask="url(#${id}-not-b)"/>`;
+      else if(type.region==='bOnly')shade=`<circle cx="157" cy="76" r="57" fill="#abb5c5" opacity=".76" clip-path="url(#${id}-b)" mask="url(#${id}-not-a)"/>`;
+      else shade=`<circle cx="157" cy="76" r="57" fill="#abb5c5" opacity=".76" clip-path="url(#${id}-a)"/>`;
+    }
+    const witness={aOnly:[77,98],overlap:[130,98],bOnly:[183,98]}[type.region];
+    const cross=type.mark==='x'?`<g transform="translate(${witness[0]} ${witness[1]})"><circle cx="0" cy="0" r="12" fill="#fff" opacity=".93"/><path d="M-6 -6 L6 6 M6 -6 L-6 6" stroke="#121926" stroke-linecap="round" stroke-width="3.7"/></g>`:'';
+    return `<svg class="diagram-svg${compact?' compact':''}" viewBox="0 0 260 156" role="img" aria-label="${escapeHtml(type.text)}의 집합 다이어그램" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <clipPath id="${id}-a"><circle cx="103" cy="76" r="57"/></clipPath>
+        <clipPath id="${id}-b"><circle cx="157" cy="76" r="57"/></clipPath>
+        <mask id="${id}-not-a" maskUnits="userSpaceOnUse" x="0" y="0" width="260" height="156"><rect width="260" height="156" fill="#fff"/><circle cx="103" cy="76" r="57" fill="#000"/></mask>
+        <mask id="${id}-not-b" maskUnits="userSpaceOnUse" x="0" y="0" width="260" height="156"><rect width="260" height="156" fill="#fff"/><circle cx="157" cy="76" r="57" fill="#000"/></mask>
+      </defs>
+      ${shade}
+      <circle cx="103" cy="76" r="57" fill="none" stroke="#303c50" stroke-width="2"/>
+      <circle cx="157" cy="76" r="57" fill="none" stroke="#303c50" stroke-width="2"/>
+      <text x="82" y="54" fill="#202a3b" font-size="19" font-weight="750" text-anchor="middle">A</text>
+      <text x="178" y="54" fill="#202a3b" font-size="19" font-weight="750" text-anchor="middle">B</text>
+      ${cross}
+    </svg>`;
+  }
+  function renderDiagramStudy(){
+    tableCleanup();tableCleanup=()=>{};clearTimeout(pendingTimer);
+    session=null;currentMode=null;question=null;studyMode='reason';
+    app.innerHTML=`${topbar()}
+      <div class="game-head"><button class="back-btn" id="study-back">← 훈련 선택</button><span class="game-caption">STUDY / NO TIMER</span></div>
+      <div class="study-header"><div class="eyebrow">LOGIC / BASIC</div><h1>집합 다이어그램 암기</h1><p>명제의 표현에 따라 집합의 어느 영역이 비거나, 어느 영역에 대상이 존재하는지 익힙니다.</p></div>
+      <div class="diagram-legend" aria-label="다이어그램 읽는 법"><span><span class="legend-square"></span> 회색 음영 = 반드시 비어 있는 영역</span><span><strong class="legend-x">×</strong> = 대상이 1개 이상 존재</span></div>
+      <div class="diagram-study-callout">두 원이 겹쳐 그려진 것만으로 교집합에 원소가 있다는 뜻은 아닙니다. <strong>음영과 × 표시를 기준으로 판별하세요.</strong></div>
+      <div class="study-toolbar"><button class="study-toggle selected" id="reveal-all">전체 보기</button><button class="study-toggle" id="hide-all">가리고 외우기</button><button class="primary-btn study-play" id="study-play">다이어그램 퀴즈 →</button></div>
+      <div class="diagram-study-grid">${DIAGRAM_TYPES.map((t,i)=>`<button type="button" class="diagram-study-card" data-diagram-study="${i}" aria-pressed="true">
+        <span class="diagram-study-statement">${escapeHtml(t.text)}</span>
+        <span class="diagram-study-illustration">${diagramSvg(t)}<span class="diagram-masked-label">눌러서 확인</span></span>
+        <span class="diagram-study-detail"><strong>${escapeHtml(t.relation)}</strong><small>${escapeHtml(t.explain)}</small></span>
+      </button>`).join('')}</div>
+      <div class="study-footnote">가리고 외우기를 누른 다음 각 문장을 보고 다이어그램을 떠올려보세요. 이 화면의 학습 시간과 정답률은 기록하지 않습니다.</div>`;
+    bindTopbar();
+    $('#study-back').addEventListener('click',exitGame);
+    $('#study-play').addEventListener('click',()=>startGame('diagram'));
+    const items=$$('[data-diagram-study]');
+    const showAll=shown=>{
+      items.forEach(el=>{el.classList.toggle('masked',!shown);el.classList.remove('revealed');el.setAttribute('aria-pressed',String(shown));});
+      $('#reveal-all').classList.toggle('selected',shown);
+      $('#hide-all').classList.toggle('selected',!shown);
+    };
+    $('#reveal-all').addEventListener('click',()=>showAll(true));
+    $('#hide-all').addEventListener('click',()=>showAll(false));
+    items.forEach(el=>el.addEventListener('click',()=>{
+      if(el.classList.contains('masked')){el.classList.toggle('revealed');el.setAttribute('aria-pressed',String(el.classList.contains('revealed')));}
+    }));
+  }
+  function makeDiagramQuestion({session,shuffle,pick}){
+    let correct=pick(DIAGRAM_TYPES);
+    if(correct.key===session.lastQuestionSignature)correct=pick(DIAGRAM_TYPES.filter(t=>t.key!==correct.key));
+    session.lastQuestionSignature=correct.key;
+    const distractors=shuffle(DIAGRAM_TYPES.filter(t=>t.key!==correct.key)).slice(0,3);
+    const alternatives=shuffle([correct,...distractors]);
+    return {statement:correct.text,correctKey:correct.key,correctIndex:alternatives.findIndex(t=>t.key===correct.key),
+      alternatives, explanation:`${correct.relation} · ${correct.explain}`};
+  }
+  function renderDiagramQuestion(q){
+    return `<section class="reason-paper diagram-quiz-paper" aria-label="집합 다이어그램 문제">
+      <div class="reason-meta"><span>집합 · 명제 / 기본</span><span>다이어그램 선택</span></div>
+      <p class="diagram-question-instruction">다음 명제를 나타내는 다이어그램을 고르세요.</p>
+      <div class="diagram-statement">${escapeHtml(q.statement)}</div>
+      <div class="diagram-legend quiz-legend"><span><span class="legend-square"></span> 회색 = 비어 있음</span><span><strong class="legend-x">×</strong> = 1개 이상 존재</span></div>
+      <div class="diagram-option-grid">${q.alternatives.map((t,i)=>`<button type="button" class="diagram-option" data-diagram-choice="${i}" aria-label="${i+1}번 다이어그램"><span class="diagram-option-number">${REASON_NUMBER[i]}</span>${diagramSvg(t,{compact:true})}</button>`).join('')}</div>
+      <div class="feedback reason-feedback" id="answer-feedback" aria-live="polite"></div>
+      <p class="reason-hint">모든 A는 B라는 표현은 A의 존재를 보장하지 않습니다. 음영과 ×를 구별하세요.</p>
+    </section>`;
+  }
+  function mountDiagramQuestion(q,{root,submit}){
+    $$('.diagram-option',root).forEach(b=>b.addEventListener('click',()=>{
+      const index=Number(b.dataset.diagramChoice);
+      if(index!==q.correctIndex)$(`[data-diagram-choice="${q.correctIndex}"]`,root)?.classList.add('diagram-answer-reveal');
+      submit(index,b);
+    }));
+  }
+  registerMode({key:'diagram',hidden:true,title:'집합 다이어그램',subtitle:'명제에 맞는 음영과 × 표시를 고르는 기초 훈련',tag:'LOGIC / DIAGRAM',art:'◯',
+    makeQuestion:makeDiagramQuestion,render:renderDiagramQuestion,mount:mountDiagramQuestion,
+    checkAnswer(q,value){return {correct:Number(value)===q.correctIndex,explanation:q.explanation};}
+  });
+
+  // 5. Propositional/set reasoning. Each question is verified against all 4-element
+  // finite interpretations of A, B, C (4096 cases) before its distractors are shown.
+  // Important: universal claims do NOT imply existence; some(A,B) is symmetric,
+  // while all(A,B) is NOT. This avoids accidental valid extra answers.
+  const REASON_SYMBOLS=['A','B','C'];
+  const REASON_NUMBER=['①','②','③','④'];
+  const stmt=(kind,from,to)=>({kind,from,to});
+  const ALL_CANDIDATES=[];
+  for(let a=0;a<3;a++)for(let b=0;b<3;b++)if(a!==b){
+    for(const kind of ['all','none','some','someNot'])ALL_CANDIDATES.push(stmt(kind,a,b));
+  }
+  const REASON_PATTERNS=[
+    {id:'chain', p:stmt('all',0,1), b:stmt('all',1,2), c:stmt('all',0,2), note:'A가 B에 포함되고 B가 C에 포함되므로, A도 C에 포함됩니다.'},
+    {id:'exclusion',p:stmt('all',0,1),b:stmt('none',1,2),c:stmt('none',0,2),note:'A의 구성원은 모두 B에 속하고, B와 C는 서로 겹치지 않습니다.'},
+    {id:'witness',p:stmt('some',0,1),b:stmt('all',1,2),c:stmt('some',0,2),note:'A이면서 B인 대상이 실제로 존재하고, 모든 B는 C이므로 그 대상은 C에도 속합니다.'},
+    {id:'some-not',p:stmt('some',0,1),b:stmt('none',1,2),c:stmt('someNot',0,2),note:'A이면서 B인 대상이 존재하며, B인 대상은 어떤 것도 C가 아닙니다.'},
+    {id:'shared',p:stmt('some',0,1),b:stmt('all',0,2),c:stmt('some',1,2),note:'A와 B에 함께 속하는 대상은 모두 A이므로 C에도 속합니다.'},
+    {id:'reverse-witness',p:stmt('all',0,1),b:stmt('some',2,0),c:stmt('some',2,1),note:'C이면서 A인 대상이 존재합니다. 그 대상은 B이기도 합니다.'},
+    {id:'not-b',p:stmt('none',0,1),b:stmt('some',0,2),c:stmt('someNot',2,1),note:'A이면서 C인 대상이 존재하고, A와 B는 서로 겹치지 않습니다.'},
+    {id:'reverse-all',p:stmt('all',1,0),b:stmt('none',0,2),c:stmt('none',1,2),note:'B는 A의 일부이며, A는 C와 겹치지 않으므로 B도 C와 겹치지 않습니다.'},
+    {id:'negative-witness',p:stmt('someNot',0,1),b:stmt('all',0,2),c:stmt('someNot',2,1),note:'A 중 B가 아닌 대상이 존재하며, 그 대상은 C에도 속합니다.'},
+    {id:'not-overlap',p:stmt('some',1,2),b:stmt('none',0,1),c:stmt('someNot',2,0),note:'B와 C에 함께 속하는 대상이 존재하지만, B는 A와 겹치지 않습니다.'}
+  ];
+  function reasonText(r){
+    const a=REASON_SYMBOLS[r.from],b=REASON_SYMBOLS[r.to];
+    if(r.kind==='all')return `모든 ${a}는 ${b}이다.`;
+    if(r.kind==='none')return `어떤 ${a}도 ${b}가 아니다.`;
+    if(r.kind==='some')return `어떤 ${a}는 ${b}이다.`;
+    return `어떤 ${a}는 ${b}가 아니다.`;
+  }
+  // Each element belongs to any combination of the three sets (0..7 bitmask).
+  // Four elements are sufficient to validate all these deliberately bounded patterns.
+  function holds(rule,world){
+    const a=1<<rule.from,b=1<<rule.to;
+    for(let i=0;i<4;i++){
+      const mask=(world>>(i*3))&7;
+      const yesA=Boolean(mask&a),yesB=Boolean(mask&b);
+      if(rule.kind==='all' && yesA&&!yesB)return false;
+      if(rule.kind==='none' && yesA&&yesB)return false;
+      if(rule.kind==='some' && yesA&&yesB)return true;
+      if(rule.kind==='someNot' && yesA&&!yesB)return true;
+    }
+    return rule.kind==='all'||rule.kind==='none';
+  }
+  function reasonEntails(premises,conclusion){
+    let any=false;
+    for(let w=0;w<4096;w++){
+      if(!premises.every(p=>holds(p,w)))continue;
+      any=true;
+      if(!holds(conclusion,w))return false;
+    }
+    return any;
+  }
+  function reasonSatisfiable(premises){
+    for(let w=0;w<4096;w++)if(premises.every(p=>holds(p,w)))return true;
+    return false;
+  }
+  function remapStatement(rule,mapping){return stmt(rule.kind,mapping[rule.from],mapping[rule.to]);}
+  function statementKey(r){return [r.kind,r.from,r.to].join(':');}
+  function makeReasonQuestion({session,state,shuffle,pick}){
+    const modeSetting=state.settings.reasoningStyle||'mixed';
+    const task=modeSetting==='mixed'?pick(['conclusion','bridge']):modeSetting;
+    let template=pick(REASON_PATTERNS);
+    if(session.lastQuestionSignature===task+template.id){
+      template=pick(REASON_PATTERNS.filter(p=>p.id!==template.id));
+    }
+    session.lastQuestionSignature=task+template.id;
+    const map=shuffle([0,1,2]);
+    const given=remapStatement(template.p,map);
+    const bridge=remapStatement(template.b,map);
+    const conclusion=remapStatement(template.c,map);
+    const fullPremises=[given,bridge];
+    const optionsPool=ALL_CANDIDATES.filter(v=>{
+      const key=statementKey(v);
+      if([given,bridge,conclusion].some(x=>statementKey(x)===key))return false;
+      if(task==='conclusion'){
+        return !reasonEntails(fullPremises,v);
+      }
+      return reasonSatisfiable([given,v])&&!reasonEntails([given,v],conclusion);
+    });
+    // The correct answer is proven, not merely assumed from the pattern name.
+    const correct=task==='conclusion'?conclusion:bridge;
+    const premises=task==='conclusion'?fullPremises:[given];
+    if(!reasonSatisfiable(premises)||
+      !(task==='conclusion'?reasonEntails(premises,correct):reasonEntails([given,correct],conclusion))||
+      optionsPool.length<3){throw Error('Invalid logic question template: '+template.id);}
+    // Distractors preferentially reuse the same pair or set involved in the answer.
+    const ranked=shuffle(optionsPool).sort((a,b)=>{
+      const score=r=>(r.from===correct.from?2:0)+(r.to===correct.to?2:0)+
+        (r.from===correct.to?1:0)+(r.to===correct.from?1:0)+(r.kind===correct.kind?1:0);
+      return score(b)-score(a);
+    });
+    const alternatives=shuffle([correct,...ranked.slice(0,3)]);
+    const correctIndex=alternatives.findIndex(v=>statementKey(v)===statementKey(correct));
+    return {task,premises,conclusion,alternatives,correctIndex,
+      explanation:reasonText(correct)+' '+template.note,
+      key:template.id};
+  }
+  function renderReasonQuestion(q){
+    const isBridge=q.task==='bridge';
+    const intro=isBridge?'주어진 명제와 선지를 함께 참이라고 할 때, 아래 결론이 반드시 성립하도록 하는 선지는?':'다음 명제들이 참일 때, 반드시 참인 선지는?';
+    return `<section class="reason-paper" aria-label="집합 추론 문제">
+      <div class="reason-meta"><span>집합 · 명제</span><span>${isBridge?'중간 다리':'참인 결론'}</span></div>
+      <p class="reason-intro">${intro}</p>
+      <div class="reason-premises">${q.premises.map((r,i)=>`<div class="reason-premise"><span class="reason-p-label">${isBridge?'주어진 명제':`명제 ${i+1}`}</span><span>${escapeHtml(reasonText(r))}</span></div>`).join('')}
+      ${isBridge?`<div class="reason-connector" aria-hidden="true">＋ ?</div><div class="reason-premise reason-goal"><span class="reason-p-label">결론</span><span>${escapeHtml(reasonText(q.conclusion))}</span></div>`:''}</div>
+      <div class="reason-choices">${q.alternatives.map((r,i)=>`<button class="reason-choice" type="button" data-logic-choice="${i}" aria-label="${i+1}번 ${escapeHtml(reasonText(r))}"><span class="reason-choice-number">${REASON_NUMBER[i]}</span><span>${escapeHtml(reasonText(r))}</span></button>`).join('')}</div>
+      <div class="feedback reason-feedback" id="answer-feedback" aria-live="polite"></div>
+      <p class="reason-hint">‘모든 A는 B’가 참이어도 A가 실제로 존재한다는 뜻은 아닙니다.</p>
+    </section>`;
+  }
+  function mountReasonQuestion(q,{root,submit}){
+    $$('.reason-choice',root).forEach(b=>b.addEventListener('click',()=>{
+      const index=Number(b.dataset.logicChoice);
+      if(index!==q.correctIndex){
+        const right=$(`[data-logic-choice="${q.correctIndex}"]`,root);
+        right?.classList.add('reason-answer-reveal');
+      }
+      submit(index,b);
+    }));
+  }
+  registerMode({
+    key:'reason',title:'집합 · 명제 추론',subtitle:'포함관계를 판별하고, 참인 결론 또는 중간 명제를 고르세요.',tag:'LOGIC / SETS',art:'A⊂B',
+    makeQuestion:makeReasonQuestion,render:renderReasonQuestion,mount:mountReasonQuestion,
+    checkAnswer(q,value){return {correct:Number(value)===q.correctIndex,explanation:q.explanation};}
+  });
+
+  // PWA works when the files are served through HTTPS or localhost; file:// still plays normally.
+  if('serviceWorker' in navigator && (location.protocol==='https:' || location.hostname==='localhost' || location.hostname==='127.0.0.1')){
+    addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+  }
+  renderHome();
+})();
+</script>
+</body>
+</html>
