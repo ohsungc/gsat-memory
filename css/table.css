@@ -1,0 +1,145 @@
+/* v1.1: printable exam-sheet composition, based on the proportions of a PSAT handout.
+   No copied exam text or tables are bundled. */
+.exam-paper{max-width:830px;margin:0 auto;background:#fff;border:1px solid #cdd2da;border-radius:0;padding:clamp(20px,5.1vw,51px) clamp(19px,5.8vw,61px) clamp(35px,5.5vw,62px);box-shadow:0 9px 28px rgba(17,24,39,.025)}
+.exam-paper-meta{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #dadada;padding-bottom:8px;margin-bottom:23px;font-size:10px;font-weight:700;color:#777;letter-spacing:.025em}
+.exam-question{font-size:clamp(14px,2.5vw,16px);line-height:1.8;letter-spacing:-.025em;margin:0 0 12px;color:#151515}
+.exam-question strong{font-weight:850}
+.exam-bracket{white-space:nowrap;font-weight:750}
+.exam-formula{font-size:12px;line-height:1.6;color:#51555d;margin:0 0 23px;border-left:2px solid #c9ced6;padding-left:11px}
+.exam-paper .drop-zone-grid{gap:14px;margin-bottom:21px}
+.exam-paper .compare-panel{border-color:#cbd0d8;border-radius:6px;box-shadow:none;padding:13px}
+.exam-paper .compare-label{background:#252525;border-radius:3px}
+.exam-paper .compare-description{font-size:12px;line-height:1.55}
+.exam-paper .drop-slot{border-radius:4px;background:#fff;border-color:#b7bdc6}
+.exam-paper .drop-slot.filled{background:#f1f6f2;border-color:#a8c5b4}
+.exam-paper .drop-slot.drop-active{background:#eef1ff;border-color:#445bde}
+.exam-paper .table-help{margin:8px 0 27px;color:#777}
+.exam-paper .table-help .tag{border-color:#e0e0e0;border-radius:3px;color:#555}
+.exam-table-wrap{width:100%;max-width:690px;margin:0 auto;padding:0}
+.exam-table-title{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;color:#111;text-align:center;font-size:clamp(13px,2.3vw,16px);line-height:1.6;font-weight:750;letter-spacing:-.035em;margin-bottom:1px}
+.exam-table-unit{text-align:right;font-size:11px;color:#272727;margin-bottom:7px}
+.exam-paper .table-viewport{height:auto;min-height:0;max-height:none;overflow-x:auto;overflow-y:hidden;border:0;border-radius:0;scrollbar-width:thin;overscroll-behavior-x:contain}
+.exam-paper .gsat-table{border-collapse:collapse;table-layout:fixed;min-width:0;width:100%;font-size:12px;border:1px solid #252525}
+.exam-paper .gsat-table th,.exam-paper .gsat-table td{border:1px solid #545454;padding:7px 6px;height:33px;font-weight:450;position:static;white-space:nowrap;background:#fff;text-align:center}
+.exam-paper .gsat-table th{font-weight:750;background:#f6f6f6}
+.exam-paper .gsat-table .label-cell{background:#fafafa;font-weight:650}
+.exam-paper .gsat-table th small{display:block;font-size:9px;color:#333;font-weight:500}
+.exam-paper .gsat-table .group-start>*{border-top:2px solid #333}
+.exam-paper .gsat-table .total-row>*{background:#f5f5f5;font-weight:750}
+.exam-paper .gsat-table tr:last-child>*{border-bottom:1px solid #545454}
+.exam-paper .gsat-table tr>*:last-child{border-right:1px solid #545454}
+.exam-paper .gsat-table td.numeric{touch-action:none}
+.exam-paper .gsat-table td.numeric.cell-picked{background:#e9edff;box-shadow:inset 0 0 0 2px #7485ec}
+.exam-paper .gsat-table.finance-table{min-width:605px}
+.exam-paper .gsat-table.finance-table th:first-child{width:21%}
+.exam-paper .gsat-table.finance-table th:nth-child(2){width:12%}
+.exam-paper .gsat-table.industry-table{min-width:620px}
+.exam-paper .gsat-table.industry-table th:first-child{width:12%}
+.exam-paper .gsat-table.industry-table th:nth-child(2){width:18%}
+.exam-paper .gsat-table.monthly-table{min-width:320px;max-width:480px;margin:0 auto}
+.exam-paper .table-legend{font-size:10px;color:#767b84;line-height:1.6;padding:11px 0 0}
+.exam-paper+.table-compare{max-width:830px;margin:17px auto 0}
+.exam-paper~.table-feedback{max-width:830px;margin:9px auto 0}
+@media(max-width:600px){
+ .exam-paper{padding:23px 17px 33px}
+ .exam-paper-meta{font-size:9px;margin-bottom:20px}
+ .exam-paper .drop-zone-grid{gap:7px;position:sticky;top:7px;z-index:10;background:rgba(255,255,255,.96);padding:6px 0;margin-left:-5px;margin-right:-5px}
+ .exam-paper .compare-panel{padding:8px}
+ .exam-paper .compare-description{font-size:10px}
+ .exam-paper .drop-slot{padding:7px 5px}
+ .exam-paper .table-help{font-size:10px;gap:4px}
+ .exam-paper .table-help .tag{font-size:9px}
+ .exam-paper .gsat-table{font-size:11px}
+ .exam-paper .gsat-table th,.exam-paper .gsat-table td{padding:7px 3px;height:34px}
+ .exam-paper .table-legend{padding:9px 0 0}
+ .exam-paper .gsat-table.monthly-table{width:100%;min-width:290px}
+}
+
+/* v1.2: study tables, statement-first ratio slots, and mobile table fit. */
+.mode-card{display:flex;flex-direction:column;align-items:stretch;cursor:default}
+.mode-card .mode-title,.mode-card .mode-sub,.mode-card .mode-foot{display:block}
+.mode-card .mode-foot{margin-top:auto;margin-bottom:10px}
+.mode-actions{display:flex;gap:7px;flex-wrap:wrap;position:relative;z-index:1}
+.mode-actions button{flex:1;min-width:0;padding:10px 8px;font-size:12px;white-space:nowrap;border-radius:9px}
+.mode-actions .mode-study{background:white}
+.mode-actions .mode-play{padding:10px 7px}
+.study-header{margin:12px 0 17px}
+.study-header h1{font-size:clamp(26px,5vw,38px);letter-spacing:-.055em;margin:7px 0 5px}
+.study-header p{font-size:13px;color:#697483;line-height:1.65;margin:0}
+.study-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.study-toggle{background:#fff;border:1px solid #ccd2dc;border-radius:9px;padding:11px 12px;color:#475164;font-size:12px;font-weight:750}
+.study-toggle.selected{background:#e9edff;border-color:#677cff;color:#263a9e}
+.study-play{margin-left:auto;font-size:12px;padding:11px 13px}
+.study-grid{display:grid;gap:9px}
+.study-grid.alphabet-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+.study-grid.fraction-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+.study-item{border:1px solid #cfd5de;border-radius:11px;background:#fff;min-height:91px;display:flex;flex-direction:column;gap:7px;align-items:center;justify-content:center;padding:10px 5px}
+.study-front{font-size:clamp(17px,3vw,22px);font-weight:850;color:#111e33}
+.study-back{font-size:clamp(13px,2.3vw,17px);font-weight:750;color:#54627c;font-variant-numeric:tabular-nums}
+.study-item.masked .study-back{visibility:hidden}
+.study-item.masked.revealed .study-back{visibility:visible;color:#2855ce}
+.study-item.masked{border-style:dashed;border-color:#aeb8ca}
+.study-item.masked.revealed{border-style:solid;background:#f0f4ff}
+.study-footnote{color:#798391;font-size:11px;line-height:1.7;margin:16px 0 26px}
+.exam-paper .exam-question{font-size:14px;margin-bottom:22px}
+.exam-options{display:flex;flex-direction:column;gap:16px;margin:0 0 38px}
+.exam-option{display:flex;flex-direction:column;gap:7px;min-width:0;padding-bottom:14px;border-bottom:1px solid #ececef}
+.exam-option-text{display:flex;gap:9px;align-items:baseline;color:#151515;font-size:clamp(13px,2vw,15px);font-weight:600;line-height:1.7}
+.exam-option-number{font-family:Arial,sans-serif;font-size:20px;font-weight:600;flex:0 0 25px}
+.exam-option-ratio{display:flex;gap:10px;align-items:center;margin:0 0 0 34px}
+.exam-option-ratio .drop-slot{height:42px;min-height:42px;max-width:140px;flex:1;align-items:center;border:1px dashed #9ba5b7;border-radius:3px;background:#fff;padding:5px 8px}
+.exam-option-ratio .slot-val{font-size:14px;line-height:1.25;text-align:center;min-height:17px}
+.exam-option-ratio .drop-slot.filled{border:1px solid #78a78e;background:#f0faf4}
+.exam-option-ratio .drop-slot:not(.filled)::after{content:' ';height:1px;width:80%;background:#d6dae2}
+.fraction-slash{font-size:22px;font-weight:500;color:#151515;padding:0 2px}
+.exam-paper .table-viewport{overflow-x:hidden;max-width:100%}
+.exam-paper .gsat-table.finance-table,.exam-paper .gsat-table.industry-table,.exam-paper .gsat-table.monthly-table,.exam-paper .gsat-table.kindergarten-table{min-width:0;max-width:none;width:100%}
+.exam-paper .gsat-table th,.exam-paper .gsat-table td{white-space:normal;overflow-wrap:anywhere}
+.exam-paper .gsat-table td.numeric{white-space:nowrap;font-variant-numeric:tabular-nums}
+.exam-paper .gsat-table.finance-table th:first-child{width:19%}
+.exam-paper .gsat-table.finance-table th:nth-child(2){width:12%}
+.exam-paper .gsat-table.industry-table th:first-child{width:12%}
+.exam-paper .gsat-table.industry-table th:nth-child(2){width:18%}
+.exam-paper .gsat-table.kindergarten-table th:first-child{width:19%}
+.table-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:9px}
+.table-zoom-btn{border:1px solid #d2d5de;background:#fff;color:#485266;font-size:11px;font-weight:700;padding:7px 10px;border-radius:6px;white-space:nowrap}
+.table-zoom-btn:hover{border-color:#71809c}
+.exam-paper .table-viewport.table-enlarged{overflow-x:auto}
+.exam-paper .table-viewport.table-enlarged .finance-table{min-width:640px}
+.exam-paper .table-viewport.table-enlarged .industry-table{min-width:650px}
+.exam-paper .table-viewport.table-enlarged .kindergarten-table{min-width:470px}
+.exam-paper .table-viewport.table-enlarged .monthly-table{min-width:390px}
+.table-feedback:empty{min-height:0;margin:0}
+@media(max-width:700px){
+ .study-grid.alphabet-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .study-grid.fraction-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .exam-paper .gsat-table th,.exam-paper .gsat-table td{padding:6px 2px}
+}
+@media(max-width:600px){
+ .exam-paper{padding:23px 12px 30px}
+ .exam-paper .exam-question{margin-bottom:18px}
+ .exam-options{gap:13px;margin-bottom:29px}
+ .exam-option{gap:5px;padding-bottom:11px}
+ .exam-option-text{font-size:12.5px;line-height:1.6}
+ .exam-option-ratio{gap:8px;margin-left:32px}
+ .exam-option-ratio .drop-slot{max-width:128px;height:37px;min-height:37px}
+ .exam-paper .gsat-table{font-size:clamp(9px,2.45vw,11px)}
+ .exam-paper .gsat-table th,.exam-paper .gsat-table td{font-size:inherit;padding:5px 1px;line-height:1.4;height:31px}
+ .exam-paper .gsat-table th{word-break:keep-all}
+ .exam-paper .gsat-table.finance-table th:first-child{width:20%}
+ .exam-paper .gsat-table.finance-table th:nth-child(2){width:12%}
+ .exam-paper .gsat-table.industry-table th:first-child{width:12%}
+ .exam-paper .gsat-table.industry-table th:nth-child(2){width:18%}
+ .exam-paper .gsat-table th small{font-size:8px}
+ .exam-paper .gsat-table td.numeric{letter-spacing:-.035em}
+ .exam-paper .table-legend{font-size:9px}
+ .mode-card{padding:15px;min-height:232px}
+ .mode-actions button{font-size:11px;padding:8px 4px}
+ .study-item{min-height:84px}
+}
+@media(max-width:365px){
+ .study-grid.fraction-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .exam-paper .gsat-table{font-size:9px}
+ .exam-paper .gsat-table th,.exam-paper .gsat-table td{padding:5px 0}
+ .exam-paper{padding-left:8px;padding-right:8px}
+}

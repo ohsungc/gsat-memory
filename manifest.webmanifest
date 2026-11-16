@@ -1,0 +1,26 @@
+{
+  "name": "GSAT 단순암기",
+  "short_name": "GSAT 단순암기",
+  "description": "단순암기, 암산, 표 탐색, 집합 추론, FEVER 챌린지, 오답 복습을 위한 비공식 개인 학습 게임",
+  "lang": "ko",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f8fa",
+  "theme_color": "#f7f8fa",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

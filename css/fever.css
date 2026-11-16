@@ -1,0 +1,37 @@
+/* v1.6 / optional escalating FEVER gameplay; the question surface stays calm */
+.mode-actions .mode-fever{background:#fff6e9;border:1px solid #eccba1;color:#814a13;font-weight:850}
+.mode-actions .mode-fever:hover{background:#ffedcf;border-color:#dba04c}
+.fever-overview{border:1px solid #dfd8ce;background:#fffcf8;border-radius:16px;padding:15px 17px;margin:-16px 0 26px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.fever-overview small{display:block;color:#867467;font-size:11px;margin-top:5px;line-height:1.5}
+.fever-overview strong{font-size:15px}
+.fever-overview .score-best{font-size:22px;letter-spacing:-.04em;color:#924e12;font-variant-numeric:tabular-nums;white-space:nowrap}
+.fever-intro{border-radius:23px;background:#fff;border:1px solid #dfe2e9;padding:clamp(24px,6vw,50px);box-shadow:var(--shadow)}
+.fever-intro-mark{display:inline-block;padding:7px 11px;border-radius:7px;background:#fff1db;color:#9b570c;font-size:12px;letter-spacing:.13em;font-weight:950}
+.fever-intro h1{font-size:clamp(34px,8vw,54px);letter-spacing:-.07em;margin:17px 0 12px}
+.fever-intro p{font-size:14px;color:#667080;line-height:1.85}
+.fever-rules{border:1px solid #e7e9ee;border-radius:14px;overflow:hidden;margin:25px 0}
+.fever-rule{display:flex;justify-content:space-between;align-items:center;padding:13px 17px;border-bottom:1px solid #eff0f3;gap:15px;font-size:12px}
+.fever-rule:last-child{border:0}.fever-rule span{color:#697385}.fever-rule strong{text-align:right;font-weight:820}
+.fever-actions{display:flex;gap:10px;flex-wrap:wrap}.fever-actions button{flex:1;min-width:125px}
+.fever-hud{border:1px solid #d9dde5;border-radius:16px;background:#fff;padding:13px 14px 11px;margin:-2px 0 18px}
+.fever-hud-top{display:flex;align-items:center;gap:11px;justify-content:space-between}
+.fever-score-group{display:flex;flex-direction:column;gap:1px;min-width:92px}
+.fever-kicker{font-size:10px;color:#8b6a40;font-weight:850;letter-spacing:.11em}
+.fever-score{font-size:clamp(26px,6vw,39px);font-weight:900;letter-spacing:-.065em;line-height:1.12;font-variant-numeric:tabular-nums}
+.fever-level{text-align:center;flex:1;min-width:0;font-size:12px;font-weight:850;line-height:1.6;color:#3d4656}
+.fever-level small{display:block;color:#7b8594;font-size:10px;font-weight:650}
+.fever-lives{text-align:right;white-space:nowrap;font-size:20px;letter-spacing:3px;color:#d35a4c;min-width:66px}
+.fever-lives .spent{color:#d8dce4}
+.fever-hud-bottom{display:flex;align-items:center;gap:11px;margin:11px 0 7px}
+.fever-timer{flex:1;height:11px;border-radius:99px;background:#eaedf2;overflow:hidden;position:relative}
+.fever-timer-fill{height:100%;width:100%;background:linear-gradient(90deg,#f9ab4c,#df6c28);border-radius:99px;transition:width .06s linear}
+.fever-timer-fill.urgent{background:linear-gradient(90deg,#e36a7d,#c83747)}
+.fever-seconds{font-size:16px;font-weight:850;min-width:51px;text-align:right;font-variant-numeric:tabular-nums}
+.fever-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:10px;color:#707a89;font-weight:700}
+.fever-mult{display:inline-flex;align-items:center;border-radius:6px;padding:4px 8px;background:#fff1e2;color:#8f541d;font-size:12px;font-weight:850;font-variant-numeric:tabular-nums}
+.fever-mult.hot{background:#242034;color:#fff3c5;box-shadow:0 0 0 3px #ffd49b36}
+.fever-hud.rising{animation:fever-pulse .38s ease}
+@keyframes fever-pulse{0%{box-shadow:0 0 0 0 #e79c3d70}60%{box-shadow:0 0 0 7px #e79c3d1d}100%{box-shadow:0 0 0 0 transparent}}
+.fever-results .finish-percent{font-size:clamp(66px,15vw,104px);color:#8e521a}
+.fever-history{font-size:11px;color:#6d7583;line-height:1.7;text-align:center;margin-top:13px}
+@media(max-width:580px){.mode-actions .mode-fever{padding:9px 6px}.fever-overview{padding:13px}.fever-hud{padding:11px}.fever-lives{font-size:18px;letter-spacing:0;min-width:58px}.fever-score{font-size:28px}.fever-intro{padding:23px}.fever-intro h1{font-size:36px}}

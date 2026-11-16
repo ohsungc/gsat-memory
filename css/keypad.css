@@ -1,0 +1,27 @@
+/* Alphabet in-app numeric keypad — shown only on narrow/mobile screens. */
+.alphabet-keypad{display:none}
+@media (max-width:720px){
+  .alphabet-question{padding:16px 17px 15px;min-height:0}
+  .alphabet-question .big-question{font-size:clamp(70px,21vw,94px);padding:7px 0 4px;line-height:1.05}
+  .alphabet-question .question-instruction{margin-bottom:12px}
+  .alphabet-answer-form{max-width:340px;margin:0 auto 11px}
+  .alphabet-answer-input{font-size:27px;letter-spacing:.06em;padding:10px 10px;min-height:51px;background:#fff}
+  .alphabet-answer-input[readonly]{cursor:default}
+  .alphabet-keyboard-submit{display:none}
+  .alphabet-keypad{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;max-width:340px;margin:0 auto}
+  .alphabet-key{touch-action:manipulation;appearance:none;border:1px solid #d9dfeb;border-bottom:2px solid #c5cddb;border-radius:12px;background:#f9fafc;color:#202939;min-width:0;min-height:51px;font-size:23px;line-height:1;font-weight:780;font-variant-numeric:tabular-nums;box-shadow:0 1px 0 rgba(17,24,39,.03)}
+  .alphabet-key:active:not(:disabled){transform:translateY(1px);background:#e8edf8;border-bottom-width:1px}
+  .alphabet-key:focus-visible{outline:3px solid #8fa6ff;outline-offset:2px}
+  .alphabet-key-edit{color:#526073;background:#eff2f7;font-size:27px}
+  .alphabet-key-confirm{background:#202938;color:#fff;border-color:#202938;font-size:16px;font-weight:850}
+  .alphabet-key-confirm:active:not(:disabled){background:#35425c}
+  .alphabet-key:disabled{opacity:.55;cursor:default}
+  .alphabet-question .feedback{margin-top:10px;min-height:19px;font-size:12px}
+  .alphabet-desktop-hint{display:none}
+}
+@media (max-width:360px){
+  .alphabet-question{padding:13px}
+  .alphabet-keypad{gap:7px}
+  .alphabet-key{min-height:47px}
+  .alphabet-question .big-question{font-size:70px}
+}
