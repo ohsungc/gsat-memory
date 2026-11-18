@@ -70,8 +70,7 @@
     }));
   }
   function makeDiagramQuestion({session,shuffle,pick}){
-    let correct=pick(DIAGRAM_TYPES);
-    if(correct.key===session.lastQuestionSignature)correct=pick(DIAGRAM_TYPES.filter(t=>t.key!==correct.key));
+    const correct=balancedPick(DIAGRAM_TYPES,'diagram:type',t=>t.key);
     session.lastQuestionSignature=correct.key;
     const distractors=shuffle(DIAGRAM_TYPES.filter(t=>t.key!==correct.key)).slice(0,3);
     const alternatives=shuffle([correct,...distractors]);

@@ -60,22 +60,22 @@
   };
   function makeTableQuestion({state}){
     const kinds=Object.keys(TABLE_MODES);
-    const chosen=kinds.includes(state.settings.tablePreset)?state.settings.tablePreset:pick(kinds);
+    const chosen=kinds.includes(state.settings.tablePreset)?state.settings.tablePreset:balancedPick(kinds,'table:preset');
     const preset=TABLE_MODES[chosen];
     const rows=chosen==='finance'?generateFinance():chosen==='industry'?generateIndustry():chosen==='monthly'?generateMonthly():generateKindergarten();
     const numStatements=Math.max(1,Math.min(4,Number(state.settings.tableOptions)||2));
     const options=[],slots=[],signatures=new Set();
     const numerals=['①','②','③','④'];
     const template=()=>{
-      const r=pick(rows);
+      const r=balancedPick(rows,`table:row:${chosen}`,r=>`${r.company}|${r.year}`);
       let numerator,denominator,text;
       if(chosen==='finance'){
-        const ratio=pick([
+        const ratio=balancedPick([
           ['net','revenue',`매출액 대비 당기순이익 비율`],
           ['operating','revenue',`매출액 대비 영업이익 비율`],
           ['net','assets',`총자산 대비 당기순이익 비율`],
           ['operating','assets',`총자산 대비 영업이익 비율`]
-        ]);
+        ],'table:finance:metric',ratio=>`${ratio[0]}/${ratio[1]}`);
         [numerator,denominator]=ratio;
         text=`${r.year}년 ${r.company}의 ${ratio[2]}`;
       }else if(chosen==='industry'){
@@ -88,11 +88,11 @@
         text=`${r.company} 민원건수의 ${r.year}년 수치가 ${otherYear}년 수치에서 차지하는 비율`;
         return {text,numRow:r,denRow:base,numerator,denominator};
       }else{
-        const ratio=pick([
+        const ratio=balancedPick([
           ['children','teachers','교원 1인당 원아 수'],
           ['children','kindergartens','유치원 1곳당 원아 수'],
           ['teachers','kindergartens','유치원 1곳당 교원 수']
-        ]);
+        ],'table:kindergarten:metric',ratio=>`${ratio[0]}/${ratio[1]}`);
         [numerator,denominator]=ratio;
         text=`${r.year}년 갑시의 ${ratio[2]}`;
       }

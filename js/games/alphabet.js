@@ -5,8 +5,7 @@ registerMode({
   subtitle:'A=1부터 Z=26까지 즉시 변환. 숫자를 직접 입력하세요.',
   tag:'LETTER → NUMBER', art:'A↔26',
   makeQuestion({session}){
-    let n=random(1,26);
-    if(session.lastQuestionSignature===n)n=n%26+1;
+    const n=balancedPick(Array.from({length:26},(_,i)=>i+1),'alphabet:letter');
     session.lastQuestionSignature=n;
     return {n,answer:n,answerText:`${letter(n)} = ${n}`};
   },

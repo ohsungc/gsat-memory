@@ -1,8 +1,7 @@
 'use strict';
   function makeFractionQuestion(applied,session){
-    let den=applied?random(3,20):random(2,20);
+    const den=balancedPick(Array.from({length:applied?18:19},(_,i)=>i+(applied?3:2)),applied?'applied:denominator':'fraction:denominator');
     let num=applied?random(2,den-1):1;
-    if(session.lastQuestionSignature===`${num}/${den}`){den=den===20?2:den+1;if(applied&&den<3)den=3;num=applied?Math.min(num,den-1):1;}
     session.lastQuestionSignature=`${num}/${den}`;
     const exact=percentage(num,den),answer=Number(exact.toFixed(2));
     const alternatives=new Set([answer.toFixed(2)]);

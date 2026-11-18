@@ -60,11 +60,8 @@
   function statementKey(r){return [r.kind,r.from,r.to].join(':');}
   function makeReasonQuestion({session,state,shuffle,pick}){
     const modeSetting=state.settings.reasoningStyle||'mixed';
-    const task=modeSetting==='mixed'?pick(['conclusion','bridge']):modeSetting;
-    let template=pick(REASON_PATTERNS);
-    if(session.lastQuestionSignature===task+template.id){
-      template=pick(REASON_PATTERNS.filter(p=>p.id!==template.id));
-    }
+    const task=modeSetting==='mixed'?balancedPick(['conclusion','bridge'],'reason:task'):modeSetting;
+    const template=balancedPick(REASON_PATTERNS,'reason:pattern',p=>p.id);
     session.lastQuestionSignature=task+template.id;
     const map=shuffle([0,1,2]);
     const given=remapStatement(template.p,map);

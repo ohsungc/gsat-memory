@@ -2,10 +2,10 @@
   // 4. Exact division practice. Two levels; answers always integer (no rounding trap).
   registerMode({key:'divide',title:'나누기',subtitle:'정확하게 나누어떨어지는 계산을 빠르게 암산합니다.',tag:'MENTAL MATH / DIVIDE',art:'÷',
     makeQuestion({session,state}){
-      const level=state.settings.divisionLevel==='mixed'?pick(['basic','advanced']):state.settings.divisionLevel;
+      const level=state.settings.divisionLevel==='mixed'?balancedPick(['basic','advanced'],'divide:level'):state.settings.divisionLevel;
       let divisor,quotient,dividend,signature,tries=0;
       do{
-        divisor=level==='basic'?random(2,12):random(11,25);
+        divisor=balancedPick(Array.from({length:level==='basic'?11:15},(_,i)=>i+(level==='basic'?2:11)),`divide:divisor:${level}`);
         quotient=level==='basic'?random(3,18):random(11,45);
         dividend=divisor*quotient;
         signature=`${dividend}/${divisor}`;
@@ -36,7 +36,7 @@
       const percentages=[2.5,5,7.5,10,12.5,15,17.5,20,25,30,35,37.5,40,45,50,60,75,80];
       let percent,total,part,sig,tries=0;
       do{
-        percent=pick(percentages);total=random(2,60)*40;part=total*percent/100;
+        percent=balancedPick(percentages,'reversePercent:percent');total=random(2,60)*40;part=total*percent/100;
         sig=`${percent}:${part}`;
       }while(sig===session.lastQuestionSignature&&++tries<15);
       session.lastQuestionSignature=sig;
@@ -57,7 +57,7 @@
       let a,b,c,d,ans,signature,tries=0;
       const equalMode=Math.random()<.16;
       do{
-        b=random(3,20);a=random(1,b-1);
+        b=balancedPick(Array.from({length:18},(_,i)=>i+3),'fractionCompare:leftDenominator');a=random(1,b-1);
         if(equalMode){
           const g=gcd(a,b),reducedA=a/g,reducedB=b/g;
           const possibilities=[];
@@ -68,7 +68,7 @@
           if(!possibilities.length)continue;
           [c,d]=pick(possibilities);
         }else{
-          d=random(3,20);c=random(1,d-1);
+          d=balancedPick(Array.from({length:18},(_,i)=>i+3),'fractionCompare:rightDenominator');c=random(1,d-1);
           if(a*d===c*b)continue;
         }
         signature=`${a}/${b}|${c}/${d}`;

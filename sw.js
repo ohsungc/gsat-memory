@@ -1,5 +1,5 @@
 // Offline cache for the modular game. Update CACHE when releasing a new version.
-const CACHE='gsat-dansunamgi-v18-mobile-keypad';
+const CACHE='gsat-dansunamgi-v20-soft-balance';
 const FILES=[
   "./",
   "./index.html",
@@ -13,6 +13,7 @@ const FILES=[
   "./css/progress.css",
   "./css/keypad.css",
   "./js/core/state.js",
+  "./js/core/balancing.js",
   "./js/core/views.js",
   "./js/core/progress.js",
   "./js/core/fever.js",

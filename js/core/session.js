@@ -22,7 +22,9 @@
         question.options.forEach(opt=>opt.slots.forEach(slot=>slot.filled=false));
       }
     }else{
-      question=currentMode.makeQuestion({session,state,random,pick,shuffle});
+      question=currentMode.makeQuestion({session,state,random,pick,shuffle,balancedPick});
+      // Save counts of *presented* questions across sessions, without touching the wrong-answer bank.
+      saveState();
     }
     session.questionStarted=performance.now();session.locked=false;
     if(session.fever){session.allowed=feverAllowance(currentMode.key,session.combo,session.score);session.remaining=session.allowed;}
@@ -44,6 +46,15 @@
     bindTopbar();$('#go-home')?.addEventListener('click',exitGame);
     currentMode.mount(question,{
 root:$('#question-content'),submit:submitAnswer,toast,settings:state.settings,session});
+    // On desktop, return keyboard focus to the newly-created answer field.
+    // Enter submits a form, then the following question replaces the old input.
+    // Without refocusing here, players must click the input again each round.
+    // Keep mobile (touch/virtual-keyboard) behavior unchanged.
+    const answerInput=$('#answer-input',app);
+    if(answerInput && window.matchMedia('(min-width: 721px) and (pointer: fine)').matches){
+      try{answerInput.focus({preventScroll:true});}
+      catch{answerInput.focus();}
+    }
     if(session?.fever){session.questionStarted=performance.now();startFeverClock();}
   }
   function submitAnswer(value,origin){
