@@ -80,6 +80,7 @@
     const overlay=document.createElement('div');overlay.className='overlay';overlay.setAttribute('role','dialog');overlay.setAttribute('aria-modal','true');
     overlay.innerHTML=`<div class="modal"><h2>게임 설정</h2><p>선택지를 이용하면 빠른 반복 학습에, 직접 입력하면 더 정확한 암기 확인에 적합합니다. 표 탐색에서는 선지에 필요한 분자·분모를 찾습니다. 집합 추론은 참인 결론 또는 결론을 완성할 중간 명제를 고릅니다.</p>
     <label class="setting-row"><span>한 세트 문제 수</span><select id="question-count"><option value="10">10문제</option><option value="20">20문제</option><option value="30">30문제</option></select></label>
+    <label class="setting-row"><span>알파벳 번호 문제 방향</span><select id="alphabet-direction"><option value="mixed">혼합 (알파벳 ↔ 숫자)</option><option value="forward">알파벳 → 숫자</option><option value="reverse">숫자 → 알파벳</option></select></label>
     <label class="setting-row"><span>나누기 난이도</span><select id="division-level"><option value="basic">기본 (나눗셈표)</option><option value="advanced">심화 (두 자리 나눗수)</option><option value="mixed">혼합 출제</option></select></label>
     <label class="setting-row"><span>수치형 문제 정답 방식</span><select id="answer-style"><option value="choice">4지선다 (빠른 반복)</option><option value="input">직접 입력 (암기 확인)</option></select></label>
     <label class="setting-row"><span>표 자료 유형</span><select id="table-preset"><option value="mixed">혼합 출제</option><option value="finance">기업 재무 현황</option><option value="industry">산업군별 지수</option><option value="monthly">월별 민원 현황</option><option value="kindergarten">유치원 현황</option></select></label>
@@ -91,6 +92,7 @@
     <div class="modal-footer"><button class="primary-btn" id="close-settings">설정 저장</button></div></div>`;
     document.body.appendChild(overlay);
     $('#question-count',overlay).value=String(state.settings.questionCount);
+    $('#alphabet-direction',overlay).value=state.settings.alphabetDirection||'mixed';
     $('#answer-style',overlay).value=state.settings.answerStyle;
     $('#division-level',overlay).value=state.settings.divisionLevel||'mixed';
     $('#table-preset',overlay).value=state.settings.tablePreset;
@@ -101,6 +103,7 @@
     $('#setting-haptics',overlay).checked=state.settings.haptics;
     const close=()=>{
       state.settings.questionCount=Number($('#question-count',overlay).value);
+      state.settings.alphabetDirection=$('#alphabet-direction',overlay).value;
       state.settings.answerStyle=$('#answer-style',overlay).value;
       state.settings.divisionLevel=$('#division-level',overlay).value;
       state.settings.tablePreset=$('#table-preset',overlay).value;

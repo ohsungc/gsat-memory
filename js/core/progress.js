@@ -4,7 +4,7 @@
   function questionIdentity(mode,q){
     if(q._wrongKey)return q._wrongKey;
     let signature;
-    if(mode==='alphabet')signature=`${q.n}`;
+    if(mode==='alphabet')signature=q.direction==='reverse'?`reverse:${q.n}`:`${q.n}`;
     else if(mode==='fraction'||mode==='applied')signature=`${q.num}/${q.den}`;
     else if(mode==='divide')signature=`${q.dividend}/${q.divisor}`;
     else if(mode==='reversePercent')signature=`${q.percent}:${q.part}`;
@@ -18,7 +18,7 @@
     return `${mode}|${signature}`;
   }
   function questionLabel(mode,q){
-    if(mode==='alphabet')return `${letter(q.n)} = ?`;
+    if(mode==='alphabet')return q.direction==='reverse'?`${q.n} → ? (알파벳)`:`${letter(q.n)} = ?`;
     if(mode==='fraction'||mode==='applied')return `${q.num}/${q.den} = ?%`;
     if(mode==='divide')return `${q.dividend} ÷ ${q.divisor} = ?`;
     if(mode==='reversePercent')return `${two(q.part)}은 전체의 ${q.percent}% · 전체는?`;

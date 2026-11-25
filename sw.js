@@ -1,5 +1,5 @@
 // Offline cache for the modular game. Update CACHE when releasing a new version.
-const CACHE='gsat-dansunamgi-v21-reasoning';
+const CACHE='gsat-dansunamgi-v21-reverse-alphabet';
 const FILES=[
   "./",
   "./index.html",
