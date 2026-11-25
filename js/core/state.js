@@ -7,7 +7,7 @@
   const fxCtx = fxCanvas.getContext('2d');
   const modeRegistry = new Map();
   const STORAGE_KEY = 'gsat-speed-lab-v1';
-  const DEFAULT_SETTINGS = {questionCount:10, answerStyle:'choice', tablePreset:'mixed', tableOptions:2, reasoningStyle:'mixed', divisionLevel:'mixed', sound:true, haptics:true};
+  const DEFAULT_SETTINGS = {questionCount:10, answerStyle:'choice', tablePreset:'mixed', tableOptions:2, reasoningStyle:'mixed', deductionStyle:'mixed', divisionLevel:'mixed', sound:true, haptics:true};
   const defaultData = () => ({ settings:{...DEFAULT_SETTINGS}, records:[], totalRight:0, totalAnswered:0, bestCombo:0, wrongBank:{}, modeStats:{}, feverRecords:[], feverBest:{}, balanceStats:{} });
   let state = loadState();
   let session = null;
@@ -46,4 +46,4 @@
     modeRegistry.set(m.key,m);
     if(!session && !studyMode && !monitoring) renderHome();
   }
-  window.GSATLab={registerMode, listModes:()=>[...modeRegistry.keys()],version:'2.0.0'};
+  window.GSATLab={registerMode, listModes:()=>[...modeRegistry.keys()],version:'2.1.0'};

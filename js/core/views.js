@@ -26,7 +26,7 @@
     const acc=total?Math.round(100*state.totalRight/total):0;
     app.innerHTML=`${topbar()}
       <main>
-        <section class="hero"><div class="eyebrow">GSAT / PRACTICE</div><h1>GSAT 단순암기</h1><p>암기·암산·자료 탐색·집합 추론을 짧게 반복합니다. 기록을 분석해 자주 틀린 문제를 다시 연습하세요.</p></section>
+        <section class="hero"><div class="eyebrow">GSAT / PRACTICE</div><h1>GSAT 단순암기</h1><p>암기·암산·자료 탐색·집합·도식·조건 추론을 반복합니다. 기록을 분석해 자주 틀린 문제를 다시 연습하세요.</p></section>
         <section class="stats-grid" aria-label="누적 통계"><div class="stat"><b>${two(total)}</b><span>누적 풀이</span></div><div class="stat"><b>${acc}%</b><span>전체 정답률</span></div><div class="stat"><b>${two(state.bestCombo)}</b><span>최고 콤보</span></div></section>
         <button type="button" id="open-monitor" class="monitor-banner"><span><strong>오답 모니터링</strong><small>유형별 정답률 · 다시 풀 문제 · 취약 문제 집중 연습</small></span><span class="monitor-count">${getWeakEntries().length}개 복습 대기 →</span></button>
         <div class="fever-overview"><div><strong>FEVER 챌린지</strong><small>각 문제 카드의 FEVER 버튼으로 시작 · 제한시간 · 3번 실수 시 종료</small></div><div><span class="fever-kicker">최고 기록</span><div class="score-best">${two(Math.max(0,...Object.values(state.feverBest).map(Number)))}</div></div></div>
@@ -85,6 +85,7 @@
     <label class="setting-row"><span>표 자료 유형</span><select id="table-preset"><option value="mixed">혼합 출제</option><option value="finance">기업 재무 현황</option><option value="industry">산업군별 지수</option><option value="monthly">월별 민원 현황</option><option value="kindergarten">유치원 현황</option></select></label>
     <label class="setting-row"><span>표 탐색 선지 수</span><select id="table-options"><option value="2">2개</option><option value="3">3개</option><option value="4">4개</option></select></label>
     <label class="setting-row"><span>집합 추론 문제 유형</span><select id="reasoning-style"><option value="mixed">혼합 출제</option><option value="conclusion">참인 결론 찾기</option><option value="bridge">중간 다리 명제 찾기</option></select></label>
+    <label class="setting-row"><span>조건·논리 문제 유형</span><select id="deduction-style"><option value="mixed">혼합 출제</option><option value="seat">2열×4행 좌석 배치</option><option value="order">도착 순서</option><option value="truth">참말 · 거짓말</option><option value="proposition">논리 명제</option><option value="probability">확률 · 경우의 수</option></select></label>
     <label class="setting-row"><span>효과음</span><input id="setting-sound" type="checkbox"></label>
     <label class="setting-row"><span>진동 피드백 (지원 기기)</span><input id="setting-haptics" type="checkbox"></label>
     <div class="modal-footer"><button class="primary-btn" id="close-settings">설정 저장</button></div></div>`;
@@ -95,6 +96,7 @@
     $('#table-preset',overlay).value=state.settings.tablePreset;
     $('#table-options',overlay).value=String(state.settings.tableOptions||2);
     $('#reasoning-style',overlay).value=state.settings.reasoningStyle||'mixed';
+    $('#deduction-style',overlay).value=state.settings.deductionStyle||'mixed';
     $('#setting-sound',overlay).checked=state.settings.sound;
     $('#setting-haptics',overlay).checked=state.settings.haptics;
     const close=()=>{
@@ -104,6 +106,7 @@
       state.settings.tablePreset=$('#table-preset',overlay).value;
       state.settings.tableOptions=Number($('#table-options',overlay).value);
       state.settings.reasoningStyle=$('#reasoning-style',overlay).value;
+      state.settings.deductionStyle=$('#deduction-style',overlay).value;
       state.settings.sound=$('#setting-sound',overlay).checked;
       state.settings.haptics=$('#setting-haptics',overlay).checked;
       saveState();overlay.remove();

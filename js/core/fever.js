@@ -2,7 +2,7 @@
   // FEVER is a separate session type built on the existing question engines.
   // No virtual currency, network calls, or paid rewards; local score only.
   const FEVER_MAX_QUESTIONS=80;
-  const FEVER_BASE_SECONDS={alphabet:9,fraction:13,applied:16,divide:15,reversePercent:19,fractionCompare:14,diagram:20,reason:34,table:105};
+  const FEVER_BASE_SECONDS={alphabet:9,fraction:13,applied:16,divide:15,reversePercent:19,fractionCompare:14,diagram:20,reason:34,table:105,scheme:35,deduction:45};
   // Early multipliers are deliberately small. Only sustained accuracy at high scores
   // earns substantial amplification; score-tier transitions speed up the time decay.
   const FEVER_TIERS=[
@@ -20,7 +20,9 @@
   }
   function feverAllowance(mode,streak,score){
     const tier=FEVER_TIERS[feverTier(score)];
-    const baseline=FEVER_BASE_SECONDS[mode]||17;
+    let baseline=FEVER_BASE_SECONDS[mode]||17;
+    if(mode==='scheme')baseline=question?.part===0?78:31;
+    if(mode==='deduction')baseline=({seat:85,order:56,truth:37,proposition:45,probability:38}[question?.kind]||45);
     return Math.max(2.8,Math.round(baseline*Math.max(tier.minTime,Math.pow(1-tier.decay,streak))*10)/10);
   }
   function stopFeverTimer(){if(feverRaf)cancelAnimationFrame(feverRaf);feverRaf=0;}

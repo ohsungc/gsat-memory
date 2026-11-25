@@ -10,6 +10,8 @@
     else if(mode==='reversePercent')signature=`${q.percent}:${q.part}`;
     else if(mode==='fractionCompare')signature=`${q.a}/${q.b}|${q.c}/${q.d}`;
     else if(mode==='diagram')signature=q.correctKey;
+    else if(mode==='scheme')signature=JSON.stringify({s:q.set.map(o=>o.op),r:q.route,v:q.source,p:q.part});
+    else if(mode==='deduction')signature=JSON.stringify({k:q.kind,l:q.lead,c:q.clues,o:q.options});
     else if(mode==='reason')signature=JSON.stringify({t:q.task,p:q.premises,c:q.conclusion});
     else if(mode==='table')signature=`${q.kind}:`+JSON.stringify(q.rows)+JSON.stringify(q.options.map(o=>o.text));
     else signature=JSON.stringify(q);
@@ -22,6 +24,8 @@
     if(mode==='reversePercent')return `${two(q.part)}은 전체의 ${q.percent}% · 전체는?`;
     if(mode==='fractionCompare')return `${q.a}/${q.b}  ?  ${q.c}/${q.d}`;
     if(mode==='diagram')return q.statement;
+    if(mode==='scheme')return `도식 ${q.group} · ${q.part+1}/4 · ${q.source} · ${q.route.join('→')}`;
+    if(mode==='deduction')return `${q.kind} · ${q.headline}`;
     if(mode==='reason')return `${q.task==='bridge'?'중간 명제':'결론'} · ${q.premises.map(reasonText).join(' ')}`;
     if(mode==='table')return `${q.preset.title} · ${q.numStatements}개 선지`;
     return modeRegistry.get(mode)?.title||mode;

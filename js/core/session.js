@@ -4,7 +4,7 @@
     monitoring=false;
     stopFeverTimer();clearTimeout(pendingTimer);tableCleanup();tableCleanup=()=>{};
     currentMode=mode;
-    session={mode:reviewQueue?'review':key,limit:fever?FEVER_MAX_QUESTIONS:(reviewQueue?reviewQueue.length:state.settings.questionCount),index:0,correct:0,combo:0,bestCombo:0,elapsed:0,locked:false,startTime:Date.now(),mistakes:0,lastQuestionSignature:null,review:!!reviewQueue,reviewQueue,fever:Boolean(fever&&!reviewQueue),score:0,lives:3,timeouts:0};
+    session={mode:reviewQueue?'review':key,limit:fever?FEVER_MAX_QUESTIONS:(reviewQueue?reviewQueue.length:(key==='scheme'?Math.ceil(state.settings.questionCount/4)*4:state.settings.questionCount)),index:0,correct:0,combo:0,bestCombo:0,elapsed:0,locked:false,startTime:Date.now(),mistakes:0,lastQuestionSignature:null,review:!!reviewQueue,reviewQueue,fever:Boolean(fever&&!reviewQueue),score:0,lives:3,timeouts:0};
     nextQuestion();
   }
   function nextQuestion(){

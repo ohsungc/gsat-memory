@@ -1,5 +1,5 @@
 // Offline cache for the modular game. Update CACHE when releasing a new version.
-const CACHE='gsat-dansunamgi-v20-soft-balance';
+const CACHE='gsat-dansunamgi-v21-reasoning';
 const FILES=[
   "./",
   "./index.html",
@@ -12,6 +12,7 @@ const FILES=[
   "./css/fever.css",
   "./css/progress.css",
   "./css/keypad.css",
+  "./css/reasoning-extra.css",
   "./js/core/state.js",
   "./js/core/balancing.js",
   "./js/core/views.js",
@@ -25,6 +26,8 @@ const FILES=[
   "./js/games/table.js",
   "./js/games/diagrams.js",
   "./js/games/reasoning.js",
+  "./js/games/scheme.js",
+  "./js/games/deduction.js",
   "./js/main.js"
 ];
 self.addEventListener('install', event => {
