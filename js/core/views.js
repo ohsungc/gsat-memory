@@ -19,6 +19,7 @@
     session=null;currentMode=null;question=null;studyMode=null;monitoring=false;selectedCell=null;renderHome();
   }
   function renderHome(){
+    scratchpadHide();
     stopParticles();
     monitoring=false;
     const visibleModes=[...modeRegistry.values()].filter(m=>!m.hidden);
@@ -45,6 +46,7 @@
   }
   // Unscored reference / hide-and-reveal study sheets for the two memorization modes.
   function renderStudy(key){
+    scratchpadHide();
     if(key==='reason'){renderDiagramStudy();return;}
     if(!['alphabet','fraction'].includes(key))return;
     tableCleanup();tableCleanup=()=>{};clearTimeout(pendingTimer);

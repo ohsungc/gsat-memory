@@ -65,6 +65,7 @@
     startGame(queue[0].mode,queue);
   }
   function renderMonitor(){
+    scratchpadHide();
     stopParticles();
     clearTimeout(pendingTimer);tableCleanup();tableCleanup=()=>{};
     stopFeverTimer();monitoring=true;session=null;currentMode=null;question=null;studyMode=null;

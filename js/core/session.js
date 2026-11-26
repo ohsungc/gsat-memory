@@ -46,6 +46,7 @@
     bindTopbar();$('#go-home')?.addEventListener('click',exitGame);
     currentMode.mount(question,{
 root:$('#question-content'),submit:submitAnswer,toast,settings:state.settings,session});
+    scratchpadSync();
     // On desktop, return keyboard focus to the newly-created answer field.
     // Enter submits a form, then the following question replaces the old input.
     // Without refocusing here, players must click the input again each round.
@@ -119,6 +120,7 @@ root:$('#question-content'),submit:submitAnswer,toast,settings:state.settings,se
     el.classList.remove('ok','no');el.classList.add(correct?'ok':'no');
   }
   function finishGame(){
+    scratchpadHide();
     stopFeverTimer();tableCleanup();tableCleanup=()=>{};clearTimeout(pendingTimer);
     const result={mode:session.mode,date:new Date().toISOString(),limit:session.limit,correct:session.correct,avgSec:Number((session.elapsed/session.limit/1000).toFixed(2)),bestCombo:session.bestCombo};
     state.records.unshift(result);state.records=state.records.slice(0,100);saveState();

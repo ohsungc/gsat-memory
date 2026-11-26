@@ -1,0 +1,25 @@
+/* Deliberately monochrome: only ink and white paper, separate from FEVER effects. */
+#scratchpad-root[hidden] {display:none !important}
+#scratchpad-root {position:relative;z-index:80}
+.scratch-trigger {position:fixed;bottom:calc(18px + env(safe-area-inset-bottom));right:calc(17px + env(safe-area-inset-right));z-index:80;padding:12px 16px;border:1.5px solid #222;background:#fff;color:#111;border-radius:999px;box-shadow:0 4px 19px #0002;font-weight:800;font-size:14px;letter-spacing:-.01em}
+.scratch-trigger.active {background:#161616;color:#fff}
+.scratch-panel {display:none;position:fixed;z-index:81;right:16px;bottom:calc(74px + env(safe-area-inset-bottom));width:354px;max-width:calc(100vw - 24px);padding:0;border:1.5px solid #222;background:#fff;border-radius:13px;box-shadow:0 10px 45px #0003;overflow:hidden;color:#111}
+.scratch-panel.scratch-visible {display:flex;flex-direction:column}
+.scratch-heading {display:flex;align-items:center;gap:8px;padding:12px 12px;border-bottom:1px solid #ddd;background:#f7f7f7;user-select:none;touch-action:none;cursor:move}
+.scratch-heading strong{font-size:14px;white-space:nowrap}
+.scratch-heading-note{font-size:10px;color:#595959;flex:1;text-align:right;line-height:1.3}
+.scratch-close{width:29px;height:29px;border:1px solid #bbb;border-radius:7px;background:#fff;color:#111;font-size:22px;line-height:1;cursor:pointer}
+.scratch-tools{display:flex;align-items:center;gap:5px;flex-wrap:wrap;padding:8px 9px;background:#fff;border-bottom:1px solid #ccc}
+.scratch-tool{background:white;color:#111;border:1px solid #bcbcbc;border-radius:7px;padding:8px 9px;font-size:11px;white-space:nowrap;font-weight:700;min-height:35px}
+.scratch-tool.selected{background:#161616;color:white;border-color:#111}
+.scratch-clear{margin-left:auto}
+#scratch-canvas {display:block;width:100%;height:250px;background:#fff;cursor:crosshair;touch-action:none;user-select:none;-webkit-user-select:none}
+.scratch-foot{font-size:10px;line-height:1.35;color:#626262;text-align:center;border-top:1px solid #e3e3e3;padding:7px 4px;background:#fafafa}
+@media(max-width:650px){
+  .scratch-trigger{right:12px;bottom:calc(12px + env(safe-area-inset-bottom));padding:11px 15px}
+  .scratch-panel{left:12px;right:12px;top:auto;bottom:calc(64px + env(safe-area-inset-bottom));width:auto;max-width:none;border-radius:11px}
+  .scratch-heading{cursor:default;touch-action:auto}
+  #scratch-canvas{height:min(34dvh,260px);min-height:145px}
+  .scratch-tool{padding:7px 8px}
+}
+@media(max-height:570px){#scratch-canvas{height:155px}.scratch-heading{padding:7px 10px}.scratch-foot{display:none}}

@@ -1,5 +1,5 @@
 // Offline cache for the modular game. Update CACHE when releasing a new version.
-const CACHE='gsat-dansunamgi-v21-reverse-alphabet';
+const CACHE='gsat-dansunamgi-v21-scratchpad';
 const FILES=[
   "./",
   "./index.html",
@@ -13,11 +13,13 @@ const FILES=[
   "./css/progress.css",
   "./css/keypad.css",
   "./css/reasoning-extra.css",
+  "./css/scratchpad.css",
   "./js/core/state.js",
   "./js/core/balancing.js",
   "./js/core/views.js",
   "./js/core/progress.js",
   "./js/core/fever.js",
+  "./js/core/scratchpad.js",
   "./js/core/session.js",
   "./js/core/effects.js",
   "./js/games/alphabet.js",

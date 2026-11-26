@@ -27,6 +27,7 @@
   }
   function stopFeverTimer(){if(feverRaf)cancelAnimationFrame(feverRaf);feverRaf=0;}
   function renderFeverIntro(key){
+    scratchpadHide();
     const mode=modeRegistry.get(key);if(!mode)return;
     stopFeverTimer();clearTimeout(pendingTimer);tableCleanup();tableCleanup=()=>{};
     stopParticles();session=null;question=null;currentMode=null;studyMode=null;monitoring=false;
@@ -81,6 +82,7 @@
     return Math.max(1,Math.round((tier.base+tier.speed*remaining)*mult));
   }
   function finishFever(){
+    scratchpadHide();
     if(!session?.fever)return;
     stopFeverTimer();tableCleanup();tableCleanup=()=>{};clearTimeout(pendingTimer);stopParticles();
     const s=session,record={mode:s.mode,date:new Date().toISOString(),score:s.score,correct:s.correct,attempts:s.index,bestCombo:s.bestCombo,timeouts:s.timeouts};
